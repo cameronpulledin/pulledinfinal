@@ -50,7 +50,6 @@ eventGallery:
   - { type: 'image', src: '../../assets/images/Events/igs1/midwam.jpg', title: 'Immerse Global Summit Madeira' }
   - { type: 'image', src: '../../assets/images/Events/igs1/serv1.png', title: 'Immerse Global Summit Madeira' }
   - { type: 'image', src: '../../assets/images/Events/igs1/Slide.jpg', title: 'Immerse Global Summit Madeira' }
-  - { type: 'image', src: '../../assets/images/Events/igs1/savoy palace.jpg', title: 'Immerse Global Summit Madeira' }
 
   - { type: 'image', src: '../../assets/images/Events/igs1/rapidfire.jpg', title: 'Immerse Global Summit Madeira' }
   - { type: 'image', src: '../../assets/images/Events/igs1/PXL_20220930_163640911.MP.jpg', title: 'Immerse Global Summit Madeira' }

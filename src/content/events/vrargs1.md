@@ -39,18 +39,18 @@ eventGallery:
   - { type: 'youtube', videoId: 'CfBu3AVmKyM', title: 'VR/AR Global Summit 2018 - Elizabeth Baron, Ford Motors' }
   - { type: 'youtube', videoId: 'RZ8UDVP0DTc', title: 'VR/AR Global Summit 2018 Highlights' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/11.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/A10.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/Aware-2.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/Aware-3.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/Aware-4.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/a10.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/aware-2.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/aware-3.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/aware-4.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-1.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-2.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-3.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-4.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-6.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/Demo-7.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-7.jpg', title: 'VR/AR Global Summit' }
   - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-8.jpg', title: 'VR/AR Global Summit' }
-  - { type: 'image', src: '../../assets/images/Events/VRARGS1/Demo-9.jpg', title: 'VR/AR Global Summit' }
+  - { type: 'image', src: '../../assets/images/Events/VRARGS1/demo-9.jpg', title: 'VR/AR Global Summit' }
 ---
 
 This marked the inaugural VR/AR Global Summit under its new name and refined focus, taking place at the luxurious Parq Vancouver. As executive producers, we partnered with the VR/AR Association to transform the successful predecessor, CVR, into a highly executive, founder, and business-centric summit for the immersive technology industry as #VRARGS.
