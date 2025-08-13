@@ -17,14 +17,14 @@ eventFormats:
   - "Facilities Tour"
 eventFeaturedMedia:
   type: 'image'
-  src: '../../assets/images/events/sgc/1.jpg'
+  src: '../../assets/images/Events/sgc/1.jpg'
   alt: 'Main stage at the SmartGrid Canada Conference'
 eventGallery:
-  - { type: 'image', src: '../../assets/images/events/sgc/1.jpg', title: 'SmartGrid Canada Conference' }
-  - { type: 'image', src: '../../assets/images/events/sgc/2.jpg', title: 'SmartGrid Canada Conference' }
-  - { type: 'image', src: '../../assets/images/events/sgc/3.jpg', title: 'SmartGrid Canada Conference' }
-  - { type: 'image', src: '../../assets/images/events/sgc/4.jpg', title: 'SmartGrid Canada Conference' }
-  - { type: 'image', src: '../../assets/images/events/sgc/5.jpg', title: 'SmartGrid Canada Conference' }
+  - { type: 'image', src: '../../assets/images/Events/sgc/1.jpg', title: 'SmartGrid Canada Conference' }
+  - { type: 'image', src: '../../assets/images/Events/sgc/2.jpg', title: 'SmartGrid Canada Conference' }
+  - { type: 'image', src: '../../assets/images/Events/sgc/3.jpg', title: 'SmartGrid Canada Conference' }
+  - { type: 'image', src: '../../assets/images/Events/sgc/4.jpg', title: 'SmartGrid Canada Conference' }
+  - { type: 'image', src: '../../assets/images/Events/sgc/5.jpg', title: 'SmartGrid Canada Conference' }
 ---
 
 SmartGrid Canada was the premiere Canadian event for SmartGrid, an annual conference held in Toronto that convened top executives from all major Canadian utilities (e.g., Ontario Hydro, BC Hydro), key political figures, and major corporate players like Siemens, ABB, Schneider Electric, IBM, and Cisco – most of whom were also sponsors.
