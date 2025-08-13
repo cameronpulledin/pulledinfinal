@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const allEvents = await getCollection('events');
+// Sort events by date in descending order (newest first)
+allEvents.sort((a, b) => b.data.eventDate.valueOf() - a.data.eventDate.valueOf());
+---
+<Layout 
+  title="Pulledin - Immersive Event Production"
+  metaDescription="We produce, curate, and execute events that drive technology, education, and life."
+>
+  <style is:global>
+    main { height: 100vh; width: 100vw; display: flex; flex-direction: column; }
+    .hero-section { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem; position: relative; }
+    .site-tagline h1 { font-family: var(--font-headline); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; color: var(--primary); line-height: 1.2; max-width: 1200px; }
+    .site-tagline h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
+    .site-tagline h1 .word span { display: inline-block; transform: translateY(100%); }
+    .learn-more-link { font-family: var(--font-space-mono); font-size: 1rem; text-decoration: underline; cursor: pointer; color: var(--primary); display: inline-block; margin-top: 1.5rem; }
+    .event-gallery-section { height: 55vh; width: 100%; display: flex; align-items: center; }
+    .gallery-container { width: 100%; overflow-x: auto; padding: 2rem 0; -webkit-overflow-scrolling: touch; }
+    .gallery-container::-webkit-scrollbar { display: none; }
+    .gallery-container { -ms-overflow-style: none; scrollbar-width: none; }
+    .gallery-wrapper { display: flex; padding: 0 2rem; height: 100%; position: relative; will-change: transform; align-items: center; width: max-content; }
+    .event-panel { width: 250px; height: auto; max-height: 95%; flex-shrink: 0; position: relative; display: flex; flex-direction: column; border: 1px solid var(--black); background-color: transparent; color: var(--black); text-decoration: none; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; }
+    .event-panel:hover { background-color: var(--white); color: var(--black); }
+    .event-panel + .event-panel { margin-left: 1em; }
+    .event-panel-title-wrapper, .event-panel-year { padding: 5px; font-family: var(--font-inconsolata); font-weight: 500; font-size: 12px; line-height: 1.2; }
+    .event-panel-image-wrapper { width: 100%; height: auto; overflow: hidden; background-color: var(--black); flex-grow: 1; }
+    .event-panel-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .event-panel-link { position: absolute; top: 1rem; right: 1rem; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-family: var(--font-space-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transition: opacity 0.4s ease; z-index: 2; padding: 0.5rem 0.3rem; background-color: var(--black); color: var(--background); border: 1px solid var(--black); text-decoration: none; }
+    .zoomed-panel .event-panel-link { opacity: 1; pointer-events: auto; }
+    .zoomed-panel .event-panel-link:hover { background-color: var(--pale-pink); color: var(--black); }
+    #zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9995; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: opacity 0.5s ease; cursor: pointer; }
+    #zoom-overlay.is-active { visibility: visible; opacity: 1; }
+    .zoomed-panel { width: 80vw; max-width: 1200px; height: auto; cursor: grab; }
+    .zoomed-panel:active { cursor: grabbing; }
+    .about-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--primary); z-index: 10002; visibility: hidden; pointer-events: none; clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); }
+    .about-overlay.is-active { pointer-events: auto; }
+    .about-close-btn { position: absolute; top: 1.5rem; right: 2rem; z-index: 10003; cursor: pointer; color: var(--background); width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; }
+    .about-grid { display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; height: 100%; align-items: center; padding: 5vw; }
+    .about-text-content { color: var(--background); padding-right: 3rem; }
+    .about-headline { font-family: var(--font-headline); font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 600; line-height: 1.1; margin-bottom: 2rem; }
+    .about-body { font-family: var(--font-body); font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 1.6; max-width: 50ch; margin-bottom: 3rem; }
+    .about-social-links { display: flex; gap: 1rem; }
+    .social-link { display: grid; place-items: center; width: 50px; height: 50px; border: 1px solid rgba(240, 234, 214, 0.5); border-radius: 50%; color: var(--background); text-decoration: none; transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .social-link:hover { background-color: var(--background); border-color: var(--background); color: var(--primary); }
+    .social-link i { font-size: 18px; }
+    .about-visual-content { width: 100%; height: 100%; position: relative; }
+    #particle-canvas-about { display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+    @media (max-width: 900px) {
+        .about-grid { grid-template-columns: 1fr; padding: 15vw 5vw; text-align: center; justify-items: center; overflow-y: auto; }
+        .about-visual-content { display: none; }
+        .about-text-content { padding-right: 0; }
+        .about-social-links { justify-content: center; }
+    }
+  </style>
+
+  <main>
+    <section class="hero-section">
+      <div class="site-tagline">
+        <h1>We produce events for big ideas to find their audience</h1>
+        <a href="#" class="learn-more-link no-transition">Learn More</a>
+      </div>
+    </section>
+
+    <section class="event-gallery-section">
+      <div class="gallery-container">
+        <div class="gallery-wrapper">
+          {allEvents.map((event, index) => {
+            const { eventName, eventYear, eventFeaturedMedia } = event.data;
+            const href = `/events/${event.slug}/`;
+            return (
+                <div 
+                    class="event-panel" 
+                    data-index={index}
+                    data-type={eventFeaturedMedia.type}
+                    data-slug={event.slug}
+                    data-title={eventName}
+                    data-year={eventYear}
+                    data-alt={eventFeaturedMedia.alt}
+                    data-video-id={eventFeaturedMedia.videoId}
+                    data-img-src={eventFeaturedMedia.src?.src}
+                >
+                    <div class="event-panel-title-wrapper">{eventName}</div>
+                    <div class="event-panel-image-wrapper">
+                        {eventFeaturedMedia.type === 'image' && eventFeaturedMedia.src ? (
+                            <Image src={eventFeaturedMedia.src} alt={eventFeaturedMedia.alt} class="event-panel-image" />
+                        ) : (
+                            <img src={`https://i.ytimg.com/vi/${eventFeaturedMedia.videoId}/hqdefault.jpg`} alt={eventFeaturedMedia.alt} class="event-panel-image" />
+                        )}
+                    </div>
+                    <a href={href} class="event-panel-link no-transition">View Project</a>
+                    <div class="event-panel-year">{eventYear}</div>
+                </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+    
+  <div id="zoom-overlay"></div>
+
+  <div class="about-overlay">
+    <div class="about-close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </div>
+    <div class="about-grid">
+      <div class="about-text-content">
+        <h2 class="about-headline">Our events turn big ideas into deliverable actions</h2>
+        <p class="about-body">
+            At Pulledin, we specialize in the Art of Taking Action.
+            We bring people together through events with our keen ability to design formats that build cultures.
+            We produce, curate, and execute events that drive technology, education, and life.
+            We make strategic partnerships valuable, help future leaders connect, and highlight opportunities at critical times for new audiences.
+            We are a pair of freelance expert event producers that can help at every stage of event production - a tiny team with global results.
+        </p>
+        <div class="about-social-links">
+          <a href="https://www.linkedin.com/company/pulledin/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="social-link no-transition"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/pulledinpr/" target="_blank" rel="noopener noreferrer" class="social-link no-transition"><i class="fab fa-instagram"></i></a>
+          <a href="/contact/" class="social-link no-transition"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="about-visual-content">
+          <canvas id="particle-canvas-about"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof gsap === 'undefined') { return; }
+        gsap.registerPlugin(ScrollTrigger, Draggable, Flip, MorphSVGPlugin);
+
+        const mainContent = document.querySelector('main');
+        const loader = document.getElementById('loader');
+        const loaderLogo = document.getElementById('loader-logo');
+        const pageTransitionOverlay = document.getElementById('page-transition-overlay');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn');
+        
+        const tagline = document.querySelector('.site-tagline h1');
+        if (tagline) {
+            const text = tagline.textContent;
+            tagline.innerHTML = text.split(' ').map(word => `<span class="word"><span>${word}</span></span>`).join(' ');
+        }
+
+        function loaderAnimation() {
+            if (!loader || !mainContent) {
+                if(mainContent) mainContent.style.opacity = 1;
+                document.dispatchEvent(new Event('loaderAnimationComplete'));
+                return;
+            }
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    gsap.set(loader, { display: "none" });
+                    document.body.style.pointerEvents = 'auto';
+                    document.body.style.overflow = 'auto';
+                    document.dispatchEvent(new Event('loaderAnimationComplete'));
+                }
+            });
+            gsap.set(menuToggleBtn, { opacity: 0 });
+            tl.set(mainContent, { opacity: 0 }).set(document.body, { pointerEvents: 'none', overflow: 'hidden' });
+            const logoPaths = loaderLogo ? loaderLogo.querySelectorAll('path, polygon, rect') : [];
+            if (logoPaths.length > 0) {
+                logoPaths.forEach(path => {
+                    const length = path.getTotalLength();
+                    gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+                });
+                tl.to(logoPaths, { strokeDashoffset: 0, duration: 2, stagger: 0.05, ease: "power1.inOut" });
+                tl.to(logoPaths, { fill: "var(--primary)", duration: 0.5, ease: "power1.inOut" }, "-=0.5");
+                tl.to(loader, { opacity: 0, duration: 0.8, ease: "power2.out", delay: 0.3 });
+            } else {
+                tl.to(loader, { opacity: 0, duration: 0.8, ease: "power2.out", delay: 1 });
+            }
+            tl.to(mainContent, { opacity: 1, duration: 1, ease: "power2.out" }, "<");
+            tl.to(menuToggleBtn, { opacity: 1, duration: 1, ease: "power2.out" }, "<");
+        }
+        gsap.delayedCall(0.05, loaderAnimation);
+        
+        function pageTransition(targetUrl) {
+            const tl = gsap.timeline({ onComplete: () => window.location.href = targetUrl });
+            tl.to(mainContent, { opacity: 0, duration: 0.4 });
+            tl.set(pageTransitionOverlay, { x: '100%', visibility: 'visible' });
+            tl.to(pageTransitionOverlay, { x: '0%', duration: 0.8, ease: "power2.inOut" });
+        }
+        document.body.addEventListener('click', (e) => {
+            const target = e.target.closest('a');
+            if (target && target.href && !target.target && !target.classList.contains('no-transition') && new URL(target.href, window.location.origin).origin === window.location.origin) {
+                if (target.pathname === window.location.pathname && target.hash) return;
+                e.preventDefault();
+                pageTransition(target.href);
+            }
+        });
+
+        let menuTimeline;
+        if (menuToggleBtn) {
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const menuLeft = document.querySelector('.menu-left');
+            const menuRight = document.querySelector('.menu-right');
+            const menuItems = gsap.utils.toArray('.menu-nav-overlay li');
+            const menuLogoContainer = document.querySelector('.menu-logo-container');
+            const menuLogoPath = document.querySelector('.pulledin-logo-path');
+            const chevronPath = "M384.4,250L625,0,500,0,250,250,500,500,625,500z";
+            let mm = gsap.matchMedia();
+            mm.add({ isDesktop: "(min-width: 769px)", isMobile: "(max-width: 768px)" }, (context) => {
+                let { isDesktop } = context.conditions;
+                gsap.set(menuLeft, { xPercent: isDesktop ? -100 : 0, yPercent: isDesktop ? 0 : -100 });
+                gsap.set(menuRight, { xPercent: isDesktop ? 100 : 0, yPercent: isDesktop ? 0 : 100 });
+                menuTimeline = gsap.timeline({ paused: true, onStart: () => { gsap.set(menuOverlay, { visibility: 'visible' }); gsap.set(menuToggleBtn, { mixBlendMode: 'normal', color: isDesktop ? 'var(--background)' : 'var(--primary)' }); }, onReverseComplete: () => { gsap.set(menuOverlay, { visibility: 'hidden' }); gsap.set(menuToggleBtn, { mixBlendMode: 'difference', clearProps: "color" }); } }).reverse();
+                menuTimeline.to(menuLeft, { xPercent: 0, yPercent: 0, duration: 0.8, ease: 'power3.inOut' }).to(menuRight, { xPercent: 0, yPercent: 0, duration: 0.8, ease: 'power3.inOut' }, "<").to(menuItems, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' }, "-=0.5");
+                return () => { if (menuTimeline) menuTimeline.kill(); }
+            });
+            menuToggleBtn.addEventListener('click', () => {
+                menuTimeline.reversed(!menuTimeline.reversed());
+                menuToggleBtn.querySelector('.menu-text').textContent = menuTimeline.reversed() ? "MENU" : "CLOSE";
+            });
+            const rippleFilter = document.querySelector("#ripple-filter feDisplacementMap");
+            menuLogoContainer.addEventListener('mouseenter', () => { gsap.to(rippleFilter, { duration: 0.8, attr: { scale: 50 }, ease: "power2.out" }); gsap.to(menuLogoPath, { duration: 0.8, morphSVG: chevronPath, ease: "power2.inOut" }); });
+            menuLogoContainer.addEventListener('mouseleave', () => { gsap.to(rippleFilter, { duration: 0.8, attr: { scale: 0 }, ease: "power2.in" }); gsap.to(menuLogoPath, { duration: 0.8, morphSVG: menuLogoPath, ease: "power2.inOut" }); });
+            const magneticLinks = gsap.utils.toArray('.menu-nav-overlay a');
+            magneticLinks.forEach(link => {
+                link.addEventListener('mousemove', e => { const { left, top, width, height } = link.getBoundingClientRect(); const x = (e.clientX - left) - (width / 2); const y = (e.clientY - top) - (height / 2); gsap.to(link, { x: x * 0.4, y: y * 0.4, duration: 0.8, ease: 'power4.out' }); });
+                link.addEventListener('mouseleave', () => { gsap.to(link, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.4)' }); });
+            });
+        }
+        
+        const learnMoreLink = document.querySelector('.learn-more-link');
+        const aboutOverlay = document.querySelector('.about-overlay');
+        const aboutCloseBtn = document.querySelector('.about-close-btn');
+        const aboutCanvas = document.getElementById('particle-canvas-about');
+        let aboutAnimationId;
+        if (learnMoreLink && aboutOverlay && aboutCloseBtn && aboutCanvas) {
+            const aboutHeadline = aboutOverlay.querySelector('.about-headline');
+            const aboutBody = aboutOverlay.querySelector('.about-body');
+            const socialLinks = gsap.utils.toArray('.social-link');
+            const aboutTimeline = gsap.timeline({ paused: true, onStart: () => { startAnimation(); aboutOverlay.classList.add('is-active'); }, onReverseComplete: () => { stopAnimation(); aboutOverlay.classList.remove('is-active'); } }).set(aboutOverlay, { visibility: 'visible' });
+            aboutTimeline.fromTo(aboutOverlay, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 0.8, ease: 'power3.inOut' }).from([aboutHeadline, aboutBody], { opacity: 0, y: 30, stagger: 0.1, duration: 0.6, ease: 'power2.out' }, '-=0.4').from(socialLinks, { opacity: 0, y: 20, stagger: 0.05, duration: 0.5, ease: 'power2.out' }, '-=0.3');
+            learnMoreLink.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); if (menuTimeline && !menuTimeline.reversed()) { menuTimeline.reverse(); menuToggleBtn.querySelector('.menu-text').textContent = "MENU"; } aboutTimeline.play(); });
+            aboutCloseBtn.addEventListener('click', () => { aboutTimeline.reverse(); });
+            const ctx = aboutCanvas.getContext('2d'); let particles = []; let mouse = { x: null, y: null, radius: 100 };
+            const setupCanvas = () => { const dpr = window.devicePixelRatio || 1; const rect = aboutCanvas.getBoundingClientRect(); aboutCanvas.width = rect.width * dpr; aboutCanvas.height = rect.height * dpr; ctx.scale(dpr, dpr); };
+            class Particle { constructor(x, y, radius, color) { this.x = x; this.y = y; this.radius = radius; this.color = color; this.baseX = this.x; this.baseY = this.y; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false); ctx.fillStyle = this.color; ctx.fill(); } update() { let dxMouse = mouse.x - this.x; let dyMouse = mouse.y - this.y; let distance = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse); if (distance < mouse.radius + this.radius) { if (mouse.x < this.x && this.x < aboutCanvas.width - this.radius * 10) this.x += 3; if (mouse.x > this.x && this.x > this.radius * 10) this.x -= 3; if (mouse.y < this.y && this.y < aboutCanvas.height - this.radius * 10) this.y += 3; if (mouse.y > this.y && this.y > this.radius * 10) this.y -= 3; } if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10; if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10; this.draw(); } }
+            const initParticles = () => { particles = []; const particleCount = 70; const rect = aboutCanvas.getBoundingClientRect(); for (let i = 0; i < particleCount; i++) { let radius = Math.random() * 1.5 + 1; let x = Math.random() * (rect.width - radius * 2) + radius; let y = Math.random() * (rect.height - radius * 2) + radius; particles.push(new Particle(x, y, radius, 'rgba(240, 234, 214, 0.7)')); } };
+            const animateParticles = () => { const rect = aboutCanvas.getBoundingClientRect(); ctx.clearRect(0, 0, rect.width, rect.height); for (let i = 0; i < particles.length; i++) particles[i].update(); aboutAnimationId = requestAnimationFrame(animateParticles); };
+            const startAnimation = () => { if (!aboutAnimationId) { setupCanvas(); initParticles(); animateParticles(); } }; const stopAnimation = () => { if (aboutAnimationId) { cancelAnimationFrame(aboutAnimationId); aboutAnimationId = null; } };
+            window.addEventListener('resize', () => { if (aboutAnimationId) { setupCanvas(); initParticles(); } });
+            aboutCanvas.addEventListener('mousemove', (event) => { const rect = aboutCanvas.getBoundingClientRect(); mouse.x = event.clientX - rect.left; mouse.y = event.clientY - rect.top; });
+            aboutCanvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+        }
+
+        document.addEventListener('loaderAnimationComplete', function() {
+            gsap.to('.site-tagline h1 .word span', { y: 0, stagger: 0.1, duration: 1, ease: 'power3.out', delay: 0.2 });
+            
+            const galleryContainer = document.querySelector('.gallery-container');
+            const galleryWrapper = document.querySelector('.gallery-wrapper');
+            const zoomOverlay = document.getElementById('zoom-overlay');
+            if (!galleryContainer || !galleryWrapper || !zoomOverlay) return;
+
+            let autoScrollTween;
+            gsap.delayedCall(0.1, () => {
+                let maxScroll = galleryWrapper.offsetWidth - galleryContainer.offsetWidth;
+                if (maxScroll < 0) maxScroll = 0;
+                if (maxScroll > 0) {
+                    autoScrollTween = gsap.to(galleryWrapper, { x: -maxScroll, duration: galleryWrapper.children.length * 4, ease: "none", repeat: -1, yoyo: true });
+                    Draggable.create(galleryWrapper, { type: "x", bounds: { minX: 0, maxX: -maxScroll }, inertia: true, edgeResistance: 0.85, onPress: () => autoScrollTween.pause(), onDragEnd: () => autoScrollTween.resume() });
+                    galleryContainer.addEventListener('mouseenter', () => autoScrollTween.pause());
+                    galleryContainer.addEventListener('mouseleave', () => autoScrollTween.resume());
+                }
+            });
+
+            const panels = gsap.utils.toArray('.event-panel');
+            let zoomedPanel = null;
+            let youtubePlayer = null;
+            let zoomDraggable = null;
+            let currentIndex = -1;
+            
+            function restoreThumbnail(panel) {
+                if (!panel) return;
+                const imageWrapper = panel.querySelector('.event-panel-image-wrapper');
+                const data = panel.dataset;
+                if (data.type === 'image' && data.imgSrc) {
+                    imageWrapper.innerHTML = `<img src="${data.imgSrc}" alt="${data.alt}" class="event-panel-image">`;
+                } else if (data.type === 'youtube' && data.videoId) {
+                    imageWrapper.innerHTML = `<img src="https://i.ytimg.com/vi/${data.videoId}/hqdefault.jpg" alt="${data.alt}" class="event-panel-image">`;
+                }
+            }
+            
+            function showItem(index) {
+                if (!zoomedPanel) return;
+
+                if (youtubePlayer) {
+                    youtubePlayer.destroy();
+                    youtubePlayer = null;
+                }
+                const imageWrapper = zoomedPanel.querySelector('.event-panel-image-wrapper');
+                imageWrapper.innerHTML = ''; 
+
+                currentIndex = index;
+                const newData = panels[index].dataset;
+                Object.assign(zoomedPanel.dataset, newData);
+                zoomedPanel.querySelector('.event-panel-title-wrapper').textContent = newData.title;
+                zoomedPanel.querySelector('.event-panel-year').textContent = newData.year;
+                zoomedPanel.querySelector('.event-panel-link').href = `/events/${newData.slug}/`;
+
+                if (newData.type === 'image' && newData.imgSrc) {
+                    const img = new Image();
+                    img.src = newData.imgSrc;
+                    img.className = 'event-panel-image';
+                    img.onload = () => {
+                        imageWrapper.appendChild(img);
+                        const newHeight = img.naturalHeight / img.naturalWidth * imageWrapper.offsetWidth;
+                        gsap.to(zoomedPanel, { height: newHeight, duration: 0.4, ease: 'power3.inOut' });
+                    };
+                } else if (newData.type === 'youtube' && newData.videoId) {
+                    const newHeight = (9 / 16 * imageWrapper.offsetWidth);
+                    gsap.to(zoomedPanel, { 
+                        height: newHeight, 
+                        duration: 0.4, 
+                        ease: 'power3.inOut',
+                        onComplete: () => {
+                            if (typeof YT !== 'undefined' && YT.Player) {
+                                youtubePlayer = new YT.Player(imageWrapper, { videoId: newData.videoId, playerVars: { 'autoplay': 1, 'controls': 1 } });
+                            }
+                        }
+                    });
+                }
+            }
+            
+            function openZoom(panel) {
+                if (zoomedPanel) return;
+                
+                currentIndex = parseInt(panel.dataset.index);
+                zoomedPanel = panel;
+                if (autoScrollTween) autoScrollTween.pause();
+
+                const state = Flip.getState(zoomedPanel, { props: "transform, zIndex" });
+                zoomedPanel.classList.add('zoomed-panel');
+                zoomOverlay.appendChild(zoomedPanel);
+                zoomOverlay.classList.add('is-active');
+                
+                Flip.from(state, {
+                    duration: 0.6,
+                    ease: "power3.inOut",
+                    onComplete: () => {
+                        showItem(currentIndex);
+                        document.addEventListener('keydown', handleKeyPress);
+                        zoomDraggable = Draggable.create(zoomedPanel, {
+                            type: "y",
+                            bounds: { minY: -window.innerHeight, maxY: window.innerHeight },
+                            onDrag: function() { gsap.to(this.target, { rotation: this.y / 50, duration: 0.2 }); },
+                            onDragEnd: function() {
+                                if (Math.abs(this.y) > 150) {
+                                    closeZoom({ isSwipe: true, swipeDown: this.y > 0 });
+                                } else {
+                                    gsap.to(this.target, { y: 0, rotation: 0, duration: 0.4, ease: 'power2.out' });
+                                }
+                            }
+                        })[0];
+                    }
+                });
+            }
+
+            function closeZoom(options = {}) {
+                const { isSwipe = false, swipeDown = true } = options;
+                if (!zoomedPanel) return;
+                
+                const panelToClose = zoomedPanel;
+                
+                document.removeEventListener('keydown', handleKeyPress);
+                if (zoomDraggable) {
+                    zoomDraggable.kill();
+                    zoomDraggable = null;
+                }
+                if (youtubePlayer) {
+                    youtubePlayer.destroy();
+                    youtubePlayer = null;
+                }
+                
+                const onComplete = () => {
+                    restoreThumbnail(panelToClose);
+                    const originalSibling = panels[currentIndex + 1];
+                    galleryWrapper.insertBefore(panelToClose, originalSibling || null);
+                    panelToClose.classList.remove('zoomed-panel');
+                    gsap.set(panelToClose, { y: 0, opacity: 1, rotation: 0, height: 'auto' });
+                    zoomOverlay.classList.remove('is-active');
+                    if (autoScrollTween) autoScrollTween.resume();
+                    zoomedPanel = null; // ✅ CRITICAL FIX: Reset state AFTER animation
+                };
+
+                if (isSwipe) {
+                    gsap.to(panelToClose, {
+                        y: swipeDown ? window.innerHeight : -window.innerHeight,
+                        opacity: 0, rotation: swipeDown ? 15 : -15,
+                        duration: 0.5, ease: 'power2.in',
+                        onComplete: onComplete
+                    });
+                } else {
+                    const state = Flip.getState(panelToClose, { props: "transform, zIndex" });
+                    restoreThumbnail(panelToClose);
+                    gsap.set(panelToClose, { height: 'auto' });
+                    Flip.from(state, {
+                        duration: 0.6, ease: "power3.inOut",
+                        onComplete: onComplete
+                    });
+                }
+            }
+
+            function handleKeyPress(e) {
+                if (e.key === "Escape") closeZoom();
+                else if (e.key === "ArrowRight") showItem((currentIndex + 1) % panels.length);
+                else if (e.key === "ArrowLeft") showItem((currentIndex - 1 + panels.length) % panels.length);
+            }
+
+            panels.forEach(panel => {
+                panel.addEventListener('click', (e) => {
+                    if (e.target.closest('a')) return;
+                    openZoom(panel);
+                });
+            });
+            
+            zoomOverlay.addEventListener('click', (e) => {
+                if (e.target.closest('.event-panel')) return;
+                closeZoom();
+            });
+        });
+    });
+    </script>
+</body>
+</html>

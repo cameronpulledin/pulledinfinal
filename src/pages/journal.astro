@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+// Fetch and sort all journal entries
+const allPosts = await getCollection('journal');
+allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Layout title="Journal | Pulledin">
+    <main class="link-tree-container">
+        {allPosts.map(post => {
+            // Determine the correct link for the title based on the post type
+            const postUrl = post.data.postType === 'internal' 
+                ? `/journal/${post.slug}/` 
+                : post.data.externalUrl;
+
+            return (
+                <div class="link-item">
+                    <div class="link-item-header">
+                        {/* Internal posts link directly, external posts are not a link here */}
+                        {post.data.postType === 'internal' ? (
+                             <a href={postUrl} class="link-item-title-link">
+                                <span class="link-item-title">{post.data.title}</span>
+                            </a>
+                        ) : (
+                            <span class="link-item-title">{post.data.title}</span>
+                        )}
+                       
+                        <div class="link-item-meta">
+                            <span class="link-item-tag">{post.data.tag}</span>
+                            <span class="link-item-date">{post.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                        </div>
+                    </div>
+                    <div class="link-item-content">
+                        <div class="link-item-content-inner">
+                            <div class="link-image-meta link-image-meta-left"><span>{post.data.author}</span></div>
+                            <div class="link-image">
+                                {post.data.mediaType === 'image' && post.data.mediaSrc ? (
+                                    <Image src={post.data.mediaSrc} alt={post.data.title} />
+                                ) : (
+                                    <video src={post.data.videoSrc} loop muted playsinline></video>
+                                )}
+                            </div>
+                            <div class="link-image-meta link-image-meta-right">
+                                {/* For external posts, show a clear "Read More" button */}
+                                {post.data.postType === 'external' && (
+                                    <a href={postUrl} target="_blank" rel="noopener noreferrer" class="external-link-button">Read More</a>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        })}
+    </main>
+
+    <style>
+        .link-tree-container{padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto}
+        .link-item{padding:1.5rem 0;border-bottom:1px solid rgba(0,0,0,.2);cursor:pointer}
+        .link-item-header{display:flex;justify-content:space-between;align-items:baseline}
+        .link-item-title{font-family:var(--font-headline);font-size:clamp(1.5rem,4vw,2.5rem);line-height:1.2;flex-grow:1}
+        .link-item-title-link { text-decoration: none; color: inherit; }
+        .link-item-title-link:hover { text-decoration: underline; }
+        .link-item-meta{display:flex;align-items:center;font-family:var(--font-inconsolata);font-size:14px;text-transform:uppercase}
+        .link-item-tag{margin-right:2rem;opacity:.6}
+        .link-item-content{overflow:hidden}
+        .link-item-content-inner{display:none;align-items:center;justify-content:center;padding:3vw 0}
+        .link-item.is-open .link-item-content-inner{display:flex}
+        .link-image{width:25vw;max-width:350px;aspect-ratio:4/5;overflow:hidden;position:relative}
+        .link-image :global(img),.link-image video{width:100%;height:100%;object-fit:cover}
+        .link-image-meta{font-family:var(--font-inconsolata);font-size:12px;text-transform:uppercase;writing-mode:vertical-rl;padding:1rem;letter-spacing:.1em;opacity:.6}
+        .link-image-meta-left{transform:rotate(180deg)}
+        .external-link-button {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .external-link-button:hover {
+            background-color: var(--card-bg);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('loaderAnimationComplete', function () {
+            if (typeof gsap === 'undefined' || typeof Flip === 'undefined') { return; }
+            gsap.registerPlugin(Flip, ScrollTrigger);
+            
+            const links = gsap.utils.toArray('.link-item');
+            
+            links.forEach(link => {
+                const video = link.querySelector('video');
+                const header = link.querySelector('.link-item-header');
+
+                header.addEventListener('click', () => {
+                    const state = Flip.getState(links);
+                    const isOpen = link.classList.contains('is-open');
+                    
+                    links.forEach(item => {
+                        (item as HTMLElement).classList.remove('is-open');
+                        const v = (item as HTMLElement).querySelector('video');
+                        if(v) v.pause();
+                    });
+
+                    if (!isOpen) {
+                        link.classList.add('is-open');
+                        if (video) video.play();
+                    }
+
+                    Flip.from(state, {
+                        duration: 0.8,
+                        ease: "elastic.out(1, 0.75)",
+                        onComplete: () => ScrollTrigger.refresh() 
+                    });
+                });
+            });
+        });
+    </script>
+</Layout>

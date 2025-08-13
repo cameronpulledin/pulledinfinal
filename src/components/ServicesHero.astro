@@ -1,0 +1,169 @@
+---
+// Component for the new Services page hero
+import { Image } from 'astro:assets';
+
+// Import a selection of your event and logo images for the tickers
+import tedImage from '../assets/images/Events/ted30/12.jpg';
+import igsImage from '../assets/images/Events/igs1/9.jpg';
+import sxdImage from '../assets/images/Events/sxd/tools-image.png';
+import vrargsImage from '../assets/images/Events/vrargs2019/5.jpg';
+
+import accentureLogo from '../assets/images/corplogos25/svg/white/accenture-white.svg';
+import adobeLogo from '../assets/images/corplogos25/svg/white/adobe-white.svg';
+import awsLogo from '../assets/images/corplogos25/svg/white/Amazon_Web_Services_Logo-white.svg';
+import amdLogo from '../assets/images/corplogos25/svg/white/AMD_Logo-white.svg';
+import metaLogo from '../assets/images/corplogos25/svg/white/meta-white.svg';
+import ibmLogo from '../assets/images/corplogos25/svg/white/IBM_logo-white.svg';
+import intelLogo from '../assets/images/corplogos25/svg/white/Intel-logo-vrara-white.svg';
+import qualcommLogo from '../assets/images/corplogos25/svg/white/qualcomm-white.svg';
+
+const imageTickerImages = [tedImage, igsImage, sxdImage, vrargsImage, tedImage, igsImage, sxdImage, vrargsImage];
+const logoTickerLogos = [accentureLogo, adobeLogo, awsLogo, amdLogo, metaLogo, ibmLogo, intelLogo, qualcommLogo, accentureLogo, adobeLogo, awsLogo, amdLogo, metaLogo, ibmLogo, intelLogo, qualcommLogo];
+---
+
+<style>
+    .services-hero {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10vh 2rem;
+        background-color: var(--background);
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-center-content {
+        text-align: center;
+        z-index: 2;
+    }
+    .hero-headline {
+        font-family: var(--font-headline);
+        font-size: clamp(3rem, 7vw, 6rem);
+        line-height: 1.1;
+        margin-bottom: 2.5rem;
+        color: var(--primary);
+        max-width: 18ch;
+    }
+    .cta-button {
+        display: inline-block;
+        font-family: var(--font-headline);
+        font-size: 1.25rem;
+        color: var(--white);
+        background-color: var(--primary);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .cta-button:hover {
+        transform: scale(1.05);
+        background-color: #333;
+    }
+
+    .ticker-container {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    }
+    .image-ticker {
+        top: 0;
+        padding-top: 2rem;
+    }
+    .logo-ticker {
+        bottom: 0;
+        padding-bottom: 2rem;
+    }
+    .ticker-track {
+        display: flex;
+        width: fit-content;
+    }
+    .ticker-item {
+        flex-shrink: 0;
+        margin: 0 1rem;
+    }
+    .ticker-image {
+        height: 150px;
+        width: auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .ticker-logo {
+        height: 40px;
+        width: auto;
+        max-width: 150px;
+        object-fit: contain;
+    }
+</style>
+
+<section class="services-hero">
+    <div class="ticker-container image-ticker">
+        <div class="ticker-track">
+            {imageTickerImages.map(img => (
+                <div class="ticker-item">
+                    <Image src={img} alt="Past event photo" class="ticker-image" />
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <div class="hero-center-content">
+        <h1 class="hero-headline">Formats that Build Cultures and Breed Action</h1>
+        <a href="YOUR_GOOGLE_CALENDAR_LINK_HERE" target="_blank" class="cta-button">Schedule a Call</a>
+    </div>
+
+    <div class="ticker-container logo-ticker">
+        <div class="ticker-track">
+            {logoTickerLogos.map(logo => (
+                <div class="ticker-item">
+                    <img src={logo.src} alt="Partner Logo" class="ticker-logo" />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof gsap === 'undefined') { return; }
+
+        function setupTicker(containerSelector, duration, isReversed = false) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+            
+            const track = container.querySelector('.ticker-track');
+            const items = gsap.utils.toArray(track.children);
+            
+            // Duplicate items to create a seamless loop
+            const totalWidth = items.reduce((acc, item) => acc + item.offsetWidth + parseInt(getComputedStyle(item).marginRight), 0);
+            track.style.width = `${totalWidth * 2}px`;
+            items.forEach(item => track.appendChild(item.cloneNode(true)));
+            
+            const xTo = -totalWidth;
+            
+            const tween = gsap.to(track, {
+                x: xTo,
+                duration: duration,
+                ease: 'none',
+                repeat: -1,
+                modifiers: {
+                    x: gsap.utils.unitize(x => parseFloat(x) % totalWidth)
+                }
+            });
+            
+            if (isReversed) {
+                gsap.set(track, {x: xTo});
+                tween.reverse();
+            }
+
+            container.addEventListener('mouseenter', () => gsap.to(tween, {timeScale: 0.2, duration: 0.5}));
+            container.addEventListener('mouseleave', () => gsap.to(tween, {timeScale: 1, duration: 0.5}));
+        }
+
+        setupTicker('.image-ticker', 60, false); // Right to Left
+        setupTicker('.logo-ticker', 60, true);  // Left to Right
+    });
+</script>

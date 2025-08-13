@@ -1,0 +1,67 @@
+---
+import GlobalStyles from '../components/GlobalStyles.astro';
+import Header from '../components/header.astro';
+import Scripts from '../components/Scripts.astro';
+import defaultSocialImage from '../assets/images/socialImages/defaultSocialImage.png';
+
+// Add props for meta description and image
+const { 
+    title = "Pulledin - Immersive Event Production",
+    metaDescription = "We produce, curate, and execute events that drive technology, education, and life.",
+    ogImage = defaultSocialImage.src
+} = Astro.props;
+
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={metaDescription} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <GlobalStyles />
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <svg style="display:none">
+      <defs>
+        <filter id="ripple-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="1" result="warp" />
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="0" in="SourceGraphic" in2="warp" result="ripple" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div id="loader">
+        <svg id="loader-logo" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 997.1 250.3">
+            <g><g id="Layer_1"><g>
+                <path d="M118.2,76.4c-6.4-6.3-13.7-11.2-22.1-14.8s-17.3-5.4-27-5.4-18.4,1.8-26.8,5.4-15.8,8.5-22.1,14.8c-6.3,6.3-11.2,13.6-14.8,21.9S0,115.6,0,125.3v125h27.5v-55.5h41.7c9.7,0,18.7-1.8,27-5.4,8.3-3.6,15.7-8.6,22.1-15s11.4-13.8,15-22.2c3.6-8.4,5.4-17.4,5.4-26.8s-1.8-18.7-5.4-27c-3.7-8.5-8.7-15.7-15.1-22Z"/>
+                <path d="M258.9,124.7c0,5.8-1.1,11.2-3.2,16.4-2.2,5.1-5.1,9.6-8.9,13.4s-8.3,6.8-13.4,9c-5.2,2.2-10.6,3.2-16.4,3.2s-11.2-1.1-16.2-3.2c-5-2.2-9.5-5.1-13.3-9-3.8-3.8-6.8-8.3-8.9-13.4-2.2-5.1-3.2-10.6-3.2-16.4V55.5h-27.5v69.1c0,9.5,1.8,18.4,5.4,26.8,3.6,8.4,8.5,15.8,14.8,22.2s13.6,11.4,22.1,15c8.4,3.6,17.4,5.4,26.8,5.4s18.7-1.8,27-5.4c8.3-3.6,15.7-8.6,22.1-15s11.4-13.8,15-22.2,5.4-17.4,5.4-26.8V55.5h-27.5v69.2h-.1Z"/>
+                <rect x="294.7" width="27.5" height="194.1"/><rect x="332.6" width="27.5" height="194.1"/>
+                <path d="M488.8,76.5c-6.8-6.8-14.5-11.9-23-15.3s-17.2-5.1-26.1-5.1-17.5,1.7-26.1,5.1c-8.5,3.4-16.2,8.5-23,15.3s-11.8,14.4-15.1,22.8c-3.3,8.4-4.9,17.1-4.9,25.9s1.6,17.5,4.9,26.1c3.3,8.5,8.3,16.2,15.1,23,6.6,6.6,14.1,11.6,22.5,15.1s17.3,5.2,26.5,5.2,18.1-1.8,26.5-5.2c8.4-3.5,15.9-8.5,22.5-15.1l9.6-9.6-19.4-19.4-9.6,9.6c-6.6,6.6-14.2,10.5-23,11.9-8.7,1.3-17,.1-24.8-3.9l76.8-76.8-9.4-9.6h0Z"/>
+                <path d="M619,55.5h-41.7c-9.5,0-18.4,1.8-26.8,5.4-8.4,3.6-15.8,8.5-22.2,14.8s-11.4,13.6-15,21.9c-3.6,8.3-5.4,17.3-5.4,27s1.8,18.4,5.4,26.8c3.6,8.4,8.6,15.8,15,22.2s13.8,11.4,22.2,15,17.4,5.4,26.8,5.4,18.4-1.8,26.8-5.4c8.4-3.6,15.8-8.6,22.1-15s11.2-13.8,14.8-22.2,5.4-17.4,5.4-26.8V0h-27.4v55.5h0Z"/>
+                <rect x="656.3" y="55.5" width="27.2" height="138.6"/>
+                <path d="M825.6,98c-3.6-8.3-8.6-15.6-15-21.9s-13.7-11.2-22.1-14.8c-8.3-3.6-17.3-5.4-27-5.4s-18.4,1.8-26.8,5.4c-8.4,3.6-15.8,8.5-22.1,14.8-6.3,6.3-11.2,13.6-14.8,21.9s-5.4,17.3-5.4,27v69.4h27.5v-69.4c0-5.8,1.1-11.2,3.2-16.2,2.2-5,5.1-9.5,8.9-13.3,3.8-3.8,8.2-6.8,13.3-9,5-2.2,10.4-3.2,16.2-3.2s11.2,1.1,16.4,3.2c5.1,2.2,9.6,5.2,13.4,9,3.8,3.8,6.8,8.2,8.9,13.3s3.2,10.4,3.2,16.2v69.4h27.6v-69.4c0-9.7-1.8-18.7-5.4-27h0Z"/>
+            </g><polygon points="855 125.2 936.1 250.3 996.1 250.3 915.4 125.2 997.1 .1 936.1 .1 855 125.2"/></g></g>
+        </svg>
+    </div>
+    <div id="page-transition-overlay"></div>
+
+    <Header />
+    <slot />
+    
+    <Scripts />
+</body>
+</html>

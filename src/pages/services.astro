@@ -1,0 +1,654 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// Accordion Images
+import serviceImg1 from '../assets/images/Events/ted30/1.jpg';
+import serviceImg2 from '../assets/images/Events/vrargs2019/5.jpg';
+import serviceImg3 from '../assets/images/Events/igs1/serv1.png';
+import serviceImg4 from '../assets/images/events/TED30/33.jpg';
+import serviceImg5 from '../assets/images/Events/igs1/igs33.jpeg';
+import serviceImg6 from '../assets/images/Events/igs1/9.jpg';
+import serviceImg7 from '../assets/images/Events/sponsors/sponsorwall.png';
+import serviceImg8 from '../assets/images/Events/igs1/Anne-marie-IGS-stage.jpeg';
+
+// Logo Ticker Images
+import accentureLogo from '../assets/images/corplogos25/svg/white/accenture-white.svg';
+import adobeLogo from '../assets/images/corplogos25/svg/white/adobe-white.svg';
+import awsLogo from '../assets/images/corplogos25/svg/white/Amazon_Web_Services_Logo-white.svg';
+import amdLogo from '../assets/images/corplogos25/svg/white/AMD_Logo-white.svg';
+import metaLogo from '../assets/images/corplogos25/svg/white/meta-white.svg';
+import ibmLogo from '../assets/images/corplogos25/svg/white/IBM_logo-white.svg';
+
+// CORRECTED: Importing all the images for the hero ticker gallery
+import galImg1 from '../assets/images/Events/servicesgallery/1.jpg';
+import galImg2 from '../assets/images/Events/servicesgallery/2.jpg';
+import galImg3 from '../assets/images/Events/servicesgallery/20.jpg';
+import galImg4 from '../assets/images/Events/servicesgallery/24.jpg';
+import galImg5 from '../assets/images/Events/servicesgallery/3.jpg';
+import galImg6 from '../assets/images/Events/servicesgallery/4.jpg';
+import galImg7 from '../assets/images/Events/servicesgallery/5.jpg';
+import galImg8 from '../assets/images/Events/servicesgallery/6.jpg';
+import galImg9 from '../assets/images/Events/servicesgallery/7.jpg';
+import galImg10 from '../assets/images/Events/servicesgallery/8.jpeg';
+import galImg11 from '../assets/images/Events/servicesgallery/8.jpg';
+import galImg12 from '../assets/images/Events/servicesgallery/9.jpg';
+import galImg13 from '../assets/images/Events/servicesgallery/Anne-marie-IGS-stage.jpeg';
+import galImg14 from '../assets/images/Events/servicesgallery/BaileyWongHeadshot_5-622x406.jpg';
+import galImg15 from '../assets/images/Events/servicesgallery/beerfest.jpg';
+import galImg16 from '../assets/images/Events/servicesgallery/bse-2004.jpg';
+import galImg17 from '../assets/images/Events/servicesgallery/frank-soqui.jpg';
+import galImg18 from '../assets/images/Events/servicesgallery/igs1.jpg';
+import galImg19 from '../assets/images/Events/servicesgallery/igs33.jpeg';
+import galImg20 from '../assets/images/Events/servicesgallery/nasa-sq.jpg';
+import galImg22 from '../assets/images/Events/servicesgallery/sgc2013.jpg';
+import galImg23 from '../assets/images/Events/servicesgallery/VRARDay1-104.jpg';
+import galImg24 from '../assets/images/Events/servicesgallery/VRARDay1-30.jpg';
+import galImg25 from '../assets/images/Events/servicesgallery/VRARDay1-39.jpg';
+import galImg30 from '../assets/images/Events/servicesgallery/VRAR_ANCHOR 01_LAYER.png';
+import galImg31 from '../assets/images/Events/servicesgallery/VRAR_ANCHOR VAN_LAYER-TRIANGLE.jpg';
+import galImg32 from '../assets/images/Events/servicesgallery/VRAR_ANCHOR VAN_LAYER.jpg';
+import galImg33 from '../assets/images/Events/servicesgallery/work-009.jpg';
+import galImg34 from '../assets/images/Events/servicesgallery/work-028.jpg';
+import galImg35 from '../assets/images/Events/servicesgallery/work-029.jpg';
+import galImg36 from '../assets/images/Events/servicesgallery/work-031.jpg';
+import galImg37 from '../assets/images/Events/servicesgallery/work-032.jpg';
+import galImg38 from '../assets/images/Events/servicesgallery/work-033.jpg';
+import galImg39 from '../assets/images/Events/servicesgallery/work-034.jpg';
+import galImg40 from '../assets/images/Events/servicesgallery/work-30.jpg';
+
+
+const imageTickerImages = [
+    galImg1, galImg2, galImg3, galImg4, galImg5, galImg6, galImg7, galImg8, galImg9, galImg10,
+    galImg11, galImg12, galImg13, galImg14, galImg15, galImg16, galImg17, galImg18, galImg19, galImg20,
+    galImg22, galImg23, galImg24, galImg25, galImg30,
+    galImg31, galImg32, galImg33, galImg34, galImg35, galImg36, galImg37, galImg38, galImg39, galImg40
+];
+const logoTickerLogos = [accentureLogo, adobeLogo, awsLogo, amdLogo, metaLogo, ibmLogo, accentureLogo, adobeLogo, awsLogo, amdLogo, metaLogo, ibmLogo];
+
+---
+
+<Layout 
+  title="Services | Pulledin"
+  metaDescription="Expert conference and trade event producers reimagining what an event production company can be."
+>
+  <style is:global>
+    body {
+        background-color: var(--primary);
+    }
+  </style>
+  <style>
+    .services-wrapper {
+        position: relative;
+        background-color: var(--primary);
+    }
+
+    .services-hero {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Align content towards the bottom */
+        align-items: center;
+        padding: 2rem;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-center-content {
+        text-align: left;
+        z-index: 2;
+        width: 100%;
+        max-width: 1200px;
+        margin-bottom: 15vh; /* Push content up from the bottom */
+    }
+    .hero-headline {
+        font-family: var(--font-headline);
+        font-size: clamp(2.0rem, 5vw, 4rem);
+        line-height: 1.25;
+        max-width: 25ch;
+        font-weight: 100; /* Thinner font weight */
+        color: var(--background);
+    }
+    .hero-headline .word {
+        display: inline-block;
+        overflow: hidden;
+        line-height: 1.25;
+    }
+    .hero-headline .word-inner {
+        display: inline-block;
+        transform: translateY(100%);
+    }
+
+    .cta-button {
+        display: inline-block;
+        font-family: var(--font-headline);
+        font-size: 1.1rem;
+        color: var(--primary);
+        background-color: var(--background);
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        margin-top: 2rem;
+    }
+    .cta-button:hover {
+        transform: scale(1.05);
+    }
+
+    .ticker-container {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, var(--background) 10%, white 90%, transparent);
+    }
+    .image-ticker {
+        top: 0;
+        padding-top: 2rem;
+    }
+    .logo-ticker {
+        bottom: 0;
+        padding-bottom: 2rem;
+    }
+    .ticker-track {
+        display: flex;
+        width: fit-content;
+    }
+    .image-ticker .ticker-track {
+        animation: ticker-rtl 80s linear infinite;
+    }
+    .logo-ticker .ticker-track {
+        animation: ticker-ltr 80s linear infinite;
+    }
+    .ticker-item {
+        flex-shrink: 0;
+        margin: 0 1rem;
+    }
+    .ticker-image {
+        height: 150px;
+        width: auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .ticker-logo {
+        height: 20px;
+        width: auto;
+        max-width: 150px;
+        object-fit: contain;
+    }
+
+    @keyframes ticker-rtl {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+    @keyframes ticker-ltr {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+    }
+    
+    .scroll-hint-container {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        color: var(--white);
+    }
+    .mousey {
+      width: 3px; padding: 10px 15px; height: 35px;
+      border: 2px solid var(--white); border-radius: 25px;
+    }
+    .scroller {
+      width: 3px; height: 10px; border-radius: 25%;
+      background-color: var(--white);
+      animation: scroll 2.2s cubic-bezier(.15,.41,.69,.94) infinite;
+    }
+    @keyframes scroll {
+      0% { opacity: 0; }
+      10% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(15px); opacity: 0;}
+    }
+
+    /* Accordion Section Styles */
+    .services-content-section {
+        padding-top: 8rem;
+        background-color: var(--background);
+        color: var(--primary);
+        position: relative;
+        z-index: 2;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        overflow: hidden;
+    }
+    .services-intro {
+        max-width: none; /* Fullscreen feel */
+        width: 100%;
+        padding: 0 6vw 6rem; /* Match accordion padding */
+        text-align: left;
+    }
+    .services-intro h2 {
+        font-family: var(--font-headline);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        margin-bottom: 1.5rem;
+    }
+    .services-intro p {
+        font-family: var(--font-body);
+        font-size: 1.5rem;
+        line-height: 1.7;
+        max-width: 65ch;
+    }
+    .services-accordion {
+        width: 100%;
+        padding: 0 6vw 12rem;
+    }
+    .service-item {
+        padding: 2.5rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+    .service-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+    .service-item-title {
+        font-family: var(--font-headline);
+        font-size: 2.4rem;
+        line-height: 1.1;
+        flex-grow: 1;
+    }
+    .service-item-icon {
+        font-family: var(--font-inconsolata);
+        font-size: 2rem;
+        transition: transform 0.5s ease;
+    }
+    .service-item.is-open .service-item-icon {
+        transform: rotate(45deg);
+    }
+    .service-item-content {
+        overflow: hidden;
+        display: none;
+    }
+    .service-item.is-open .service-item-content {
+        display: block;
+    }
+    .service-item-content-inner {
+        padding: 3rem 0 1rem;
+    }
+     .service-image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+    }
+    .service-image {
+        width: 100%;
+        max-width: 450px;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+    }
+    .service-image :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .service-image-meta {
+        font-family: var(--font-space-mono);
+        font-size: 12px;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+        padding: 1rem;
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+    }
+    .meta-left { transform: rotate(180deg); }
+    .service-description {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .service-description h3 {
+        font-family: var(--font-headline);
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    .service-description p {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .image-ticker {
+            display: none;
+        }
+        .hero-center-content {
+            padding: 0 1rem;
+        }
+        .services-accordion {
+            padding: 0 2rem 12rem;
+        }
+        .services-intro {
+            padding: 8rem 2rem 4rem;
+        }
+    }
+  </style>
+
+  <main>
+    <div class="services-wrapper">
+        <section class="services-hero">
+            <div class="ticker-container image-ticker">
+                <div class="ticker-track">
+                    {imageTickerImages.map(img => (
+                        <div class="ticker-item">
+                            <Image src={img} alt="Past event photo" class="ticker-image" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div class="hero-center-content">
+                <h1 class="hero-headline service" id="hero-headline">We are expert conference and trade event producers that have reimagined what an event production company can (and should) be.</h1>
+                <a href="YOUR_GOOGLE_CALENDAR_LINK_HERE" target="_blank" class="cta-button">Schedule a Call</a>
+            </div>
+
+            <div class="ticker-container logo-ticker">
+                <div class="ticker-track">
+                    {logoTickerLogos.map(logo => (
+                        <div class="ticker-item">
+                            <img src={logo.src} alt="Partner Logo" class="ticker-logo" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            
+        </section>
+
+        <section class="services-content-section">
+            <div class="services-intro">
+                <h2>Our Services</h2>
+                <p>We produce, curate, and execute events that drive technology, education, and life. We make strategic partnerships valuable. We help future leaders connect and help highlight amazing opportunities to new people.</p>
+            </div>
+
+            <div class="services-accordion">
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Producers &amp; Curators</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                         <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Production</span></div>
+                                <div class="service-image"><Image src={serviceImg8} alt="Executive Production"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>We build icons.</h3>
+                                <p>We serve as your high-level strategic partners, embedding with your leadership to shape the event's core vision. This goes beyond management to include narrative development, curating world-class speakers and content, and guiding the project's soul from the first concept meeting to the final standing ovation. We handle the complexity so you can focus on the message.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Event Strategy &amp; Format</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Strategy</span></div>
+                                <div class="service-image"><Image src={serviceImg2} alt="Event Strategy"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>Format is EVERYTHING.</h3>
+                                <p>We work with you to design innovative and future-proof event formats that build culture and captivate your specific audience with an attention to market needs, event flow, content possibilities, and partnership growth opportunities. Whether you're looking to launch a new global summit, foster an intimate developer community, or revolutionize an industry conference, we define the 'why' and the 'how' to ensure your event is built to build a legacy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Consulting (Events, XR, AI)</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Technology</span></div>
+                                <div class="service-image"><Image src={serviceImg3} alt="Tech Consulting"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>Unfair Advantage: Masters of the Modern Workflow</h3>
+                                <p>To compete in today's fast-moving world, you need more than a planner—you need an unfair advantage. We provide it. Our cutting-edge workflow, built on years of expertise in areas like AI and XR, allows us to accelerate every phase of production, from development to flawless execution. We've turned this modern approach into a teachable method, consulting for other production teams and providing them with access to our vetted network of suppliers. For our clients, this means you get a smarter, faster, and more powerful production partner.</p>
+                                <p>We consult on event production, AI, and XR.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Speaker & Content Programming</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Content</span></div>
+                                <div class="service-image"><Image src={serviceImg4} alt="Content Programming"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>The heart of any great event is its content.</h3>
+                                <p>With decades of experience working with global leaders and, from Prime Ministers to Fortune 500 CEOs and tech pioneers, we have an unparalleled network and more importantly the ability to dig up incoming trends. We manage the entire process of curating, securing, and onboarding speakers who will not only draw a crowd but deliver your message with authority and impact.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Virtual &and; Hybrid Event Production</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Virtual</span></div>
+                                <div class="service-image"><Image src={serviceImg5} alt="Virtual Events"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>Global Strategy, Delivered: Mastery of Hybrid & Virtual</h3>
+                                <p>We have evolved past simple virtual events, because today’s audience is everywhere.</p>
+                                <p>We specialize in designing the sophisticated hybrid and virtual formats that reach them—both technically and strategically.</p>
+                                <p>From holographic keynotes to immersive VR training, we know how to blend physical and digital elements to create a singular, powerful experience that drives results and amplifies your global reach.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Full-Scale Event Management</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Management</span></div>
+                                <div class="service-image"><Image src={serviceImg6} alt="Event Management"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>This is our comprehensive, end-to-end solution.</h3>
+                                <p>Ready to ditch those tedious "process-driven"/PMP-time-wasters and join the event production revolution with us? We get HUGE things done with a tiny team because we employ tech to quickly solve problems - we are definitely not like the rest and proud of it.  We take on the complete operational workload, managing every logistical detail with precision and agility. This includes vendor negotiation, platform management, marketing and community strategy, and on-site (or virtual) execution. We are the engine that ensures a flawless and stress-free experience for you and your attendees.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-header">
+                        <span class="service-item-title">Partnerships</span>
+                        <span class="service-item-icon">+</span>
+                    </div>
+                    <div class="service-item-content">
+                        <div class="service-item-content-inner">
+                            <div class="service-image-container">
+                                <div class="service-image-meta meta-left"><span>Partnerships</span></div>
+                                <div class="service-image"><Image src={serviceImg7} alt="Partnerships"/></div>
+                                <div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div>
+                            </div>
+                            <div class="service-description">
+                                <h3>We have made thousands of partnerships come to life.</h3>
+                                <p>Our approach is built on bringing incredible audiences that fit partner needs, so we are selective about what we can represent. We can build effective sponsorship and partnership strategies for almost any event. We currently represent opportunities in tech, sports, and lifestyle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+
+  
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof gsap === 'undefined' || typeof Flip === 'undefined') { return; }
+        gsap.registerPlugin(ScrollTrigger, Flip);
+
+        // --- Elegant Headline Reveal ---
+        const headline = document.getElementById('hero-headline');
+        if (headline) {
+            const text = headline.textContent.trim();
+            headline.innerHTML = '';
+            text.split(' ').forEach(word => {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'word';
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.overflow = 'hidden';
+                const wordInner = document.createElement('span');
+                wordInner.className = 'word-inner';
+                wordInner.textContent = word;
+                wordInner.style.display = 'inline-block';
+                wordInner.style.transform = 'translateY(100%)';
+                wordSpan.appendChild(wordInner);
+                headline.appendChild(wordSpan);
+                headline.append(' ');
+            });
+            
+            document.addEventListener('loaderAnimationComplete', () => {
+                 gsap.timeline()
+                    .to(headline, { opacity: 1, duration: 0.1 })
+                    .to(headline.querySelectorAll('.word-inner'), {
+                        y: '0%',
+                        stagger: 0.05,
+                        duration: 1.2,
+                        ease: 'expo.out',
+                    })
+                    .to('.cta-button', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    }, "-=0.8");
+            });
+        }
+        
+        // --- Color Change & Scaling Scroll ---
+        const contentSection = document.querySelector('.services-content-section');
+        if (contentSection) {
+            gsap.set(contentSection, { scale: 0.3, borderRadius: '40px' }); // Initial state
+            
+            ScrollTrigger.create({
+                trigger: ".services-wrapper",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 3,
+                onUpdate: self => {
+                    const progress = self.progress;
+                    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+                    const backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--background').trim();
+                    
+                    document.body.style.backgroundColor = gsap.utils.interpolate(primaryColor, backgroundColor)(progress);
+                }
+            });
+
+            gsap.to(contentSection, {
+                scale: 1,
+                borderRadius: '0px',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: ".services-wrapper",
+                    start: "top top",
+                    end: "50% bottom",
+                    scrub: 1,
+                }
+            });
+        }
+
+        // --- Accordion Logic ---
+        const items = gsap.utils.toArray('.service-item');
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const state = Flip.getState(items);
+                const isOpen = item.classList.contains('is-open');
+                if (isOpen) {
+                    item.classList.remove('is-open');
+                } else {
+                    items.forEach(i => i.classList.remove('is-open'));
+                    item.classList.add('is-open');
+                }
+                Flip.from(state, {
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.75)",
+                    onComplete: () => ScrollTrigger.refresh()
+                });
+            });
+        });
+
+        // --- Ticker Logic ---
+        function setupTicker(containerSelector, duration, isReversed = false) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+            const track = container.querySelector('.ticker-track');
+            const trackItems = gsap.utils.toArray(track.children);
+            if (trackItems.length === 0) return;
+
+            const totalWidth = trackItems.reduce((acc, item) => acc + item.offsetWidth + parseInt(getComputedStyle(item).marginRight || 0), 0);
+            
+            const cloneCount = Math.ceil(window.innerWidth / totalWidth) + 2;
+            for(let i = 0; i < cloneCount; i++) {
+                trackItems.forEach(item => track.appendChild(item.cloneNode(true)));
+            }
+
+            const xTo = -totalWidth;
+            const tween = gsap.to(track, {
+                x: xTo,
+                duration: duration,
+                ease: 'none',
+                repeat: -1,
+                modifiers: {
+                    x: gsap.utils.unitize(x => parseFloat(x) % totalWidth)
+                }
+            });
+            
+            if (isReversed) {
+                gsap.set(track, {x: xTo});
+                tween.reverse();
+            }
+
+            container.addEventListener('mouseenter', () => gsap.to(tween, {timeScale: 0.2, duration: 0.5}));
+            container.addEventListener('mouseleave', () => gsap.to(tween, {timeScale: 1, duration: 0.5}));
+        }
+
+        setupTicker('.image-ticker', 200, false);
+        setupTicker('.logo-ticker', 80, true);
+    });
+  </script>
+</Layout>

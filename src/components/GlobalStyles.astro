@@ -1,0 +1,510 @@
+---
+---
+<style is:global>
+    :root {
+      --primary: #1a1a1a;
+      --background: #F0EAD6;
+      /* ... all of your other CSS rules ... */
+          --card-bg: #E0EAD6;
+          --white: #ffffff;
+          --black: #000000;
+          --highlight-yellow: #FFD700;
+          --pale-pink: #F2D7D5;
+          --font-body: 'Archivo', sans-serif;
+          --font-headline: 'Poppins', sans-serif; 
+          --font-inconsolata: 'Inconsolata', monospace;
+          --font-space-mono: 'Space Mono', monospace;
+          --font-kinetic: 'Archivo Black', sans-serif;
+    }
+
+
+
+
+
+
+
+
+    html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; width: 100%; }
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--background); z-index: 10000; display: flex; justify-content: center; align-items: center; }
+        #loader-logo { width: 50%; max-width: 400px; }
+        #loader-logo path, #loader-logo polygon, #loader-logo rect { stroke: var(--primary); stroke-width: 2; fill: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--primary); background-color: var(--background); font-size: 16px; }
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 2rem; z-index: 999; display: flex; justify-content: space-between; align-items: center; color: var(--primary); }
+        .header-logo { display: flex; cursor: pointer; color: inherit; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+        .logo-year-wrapper { position: relative; width: 60px; margin-left: 0.5rem; }
+        .logo-year { position: absolute; left: 0; transition: opacity 0.4s ease; }
+        .logo-year--hover { opacity: 0; }
+        .header-logo:hover .logo-year--default { opacity: 0; }
+        .header-logo:hover .logo-year--hover { opacity: 1; }
+        .menu-toggle-btn { position: fixed; top: 1.5rem; right: 2rem; z-index: 10001; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--primary); mix-blend-mode: difference; opacity: 1; }
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden; z-index: 10000; display: flex; flex-direction: row; }
+        .menu-overlay-panel { width: 50vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .menu-left { background-color: var(--card-bg); }
+        .menu-right { background-color: var(--primary); }
+        .menu-logo-container { width: 200px; height: 200px; cursor: pointer; filter: url(#ripple-filter); text-decoration: none; }
+        .menu-logo-container svg { width: 100%; height: 100%; }
+        .menu-logo-container .pulledin-logo-path { fill: var(--primary); stroke: var(--primary); stroke-width: 8; }
+        .menu-nav-overlay { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .menu-nav-overlay li { font-family: 'Poppins', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 600; line-height: 1.3; opacity: 0; transform: translateY(20px); will-change: transform; }
+        .menu-nav-overlay a { color: var(--background); text-decoration: none; display: inline-block; }
+        main { height: 100vh; width: 100vw; display: flex; flex-direction: column; }
+        .hero-section { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem; position: relative; }
+        .site-tagline h1 { font-family: var(--font-headline); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; color: var(--primary); line-height: 1.2; max-width: 1200px; }
+        .site-tagline h1 .word { display: inline-block; overflow: hidden; vertical-align: top; }
+        .site-tagline h1 .word span { display: inline-block; transform: translateY(100%); }
+        .learn-more-link { font-family: var(--font-space-mono); font-size: 1rem; text-decoration: underline; cursor: pointer; color: var(--primary); display: inline-block; margin-top: 1.5rem; }
+        .event-gallery-section { height: 55vh; width: 100%; display: flex; align-items: center; }
+        .gallery-container { width: 100%; overflow-x: auto; padding: 2rem 0; -webkit-overflow-scrolling: touch; }
+        .gallery-container::-webkit-scrollbar { display: none; }
+        .gallery-container { -ms-overflow-style: none; scrollbar-width: none; }
+        .gallery-wrapper { display: flex; padding: 0 2rem; height: 100%; position: relative; will-change: transform; align-items: center; width: max-content; }
+        .event-panel { width: 250px; height: auto; max-height: 95%; flex-shrink: 0; position: relative; display: flex; flex-direction: column; border: 1px solid var(--black); background-color: transparent; color: var(--black); text-decoration: none; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; }
+        .event-panel:hover { background-color: var(--white); color: var(--black); }
+        .event-panel + .event-panel { margin-left: 1em; }
+        .event-panel-title-wrapper, .event-panel-year { padding: 5px; font-family: var(--font-inconsolata); font-weight: 500; font-size: 12px; line-height: 1.2; }
+        .event-panel-image-wrapper { width: 100%; height: auto; overflow: hidden; background-color: var(--black); flex-grow: 1; }
+        .event-panel-image, .event-panel-video, .yt-player { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 1; transition: opacity 0.4s ease; }
+        .event-panel-link { position: absolute; top: 1rem; right: 1rem; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-family: var(--font-space-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transition: opacity 0.4s ease, background-color 0.3s ease, color 0.3s ease; z-index: 2; padding: 0.5rem 0.3rem; background-color: var(--black); color: var(--background); border: 1px solid var(--black); text-decoration: none; }
+        .zoomed-panel .event-panel-link { opacity: 1; pointer-events: auto; }
+        .zoomed-panel .event-panel-link:hover { background-color: var(--pale-pink); color: var(--black); }
+        .zoomed-panel .event-panel-title-wrapper, .zoomed-panel .event-panel-year { cursor: pointer; transition: background-color 0.2s ease; }
+        .zoomed-panel .event-panel-title-wrapper:hover, .zoomed-panel .event-panel-year:hover { background-color: var(--pale-pink); }
+        #zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9995; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: visibility 0s 0.5s, opacity 0.5s ease; }
+        #zoom-overlay.is-active { visibility: visible; opacity: 1; transition: visibility 0s 0s, opacity 0.5s ease; }
+        .zoomed-panel { width: 80vw; max-width: 1200px; height: 80vh; cursor: grab; }
+        .zoomed-panel:active { cursor: grabbing; }
+        #page-transition-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--primary); z-index: 9998; visibility: hidden; pointer-events: none; transform: translateX(-100%); }
+        .about-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--primary); z-index: 10002; visibility: hidden; pointer-events: none; clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); }
+        .about-overlay.is-active { pointer-events: auto; }
+        .about-close-btn { position: absolute; top: 1.5rem; right: 2rem; z-index: 10003; cursor: pointer; color: var(--background); width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; }
+        .about-grid { display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; height: 100%; align-items: center; padding: 5vw; }
+        .about-text-content { color: var(--background); padding-right: 3rem; }
+        .about-headline { font-family: var(--font-headline); font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 600; line-height: 1.1; margin-bottom: 2rem; }
+        .about-body { font-family: var(--font-body); font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 1.6; max-width: 50ch; margin-bottom: 3rem; }
+        .about-social-links { display: flex; gap: 1rem; }
+        .social-link { display: grid; place-items: center; width: 50px; height: 50px; border: 1px solid rgba(240, 234, 214, 0.5); border-radius: 50%; color: var(--background); text-decoration: none; transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .social-link:hover { background-color: var(--background); border-color: var(--background); color: var(--primary); }
+        .social-link i { font-size: 18px; }
+        .about-visual-content { width: 100%; height: 100%; position: relative; }
+        #particle-canvas-about { display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; padding: 15vw 5vw; text-align: left; justify-items: left; overflow-y: auto; }
+            .about-visual-content { display: none; }
+            .about-text-content { padding-right: 0; }
+            .about-social-links { justify-content: center; }
+            .menu-overlay { flex-direction: column; }
+            .menu-overlay-panel { width: 100vw; height: 50vh; }
+        }
+
+    
+
+    @media (max-width: 900px) {
+        /* ... your media query rules ... */
+        .menu-overlay-panel { width: 100vw; height: 50vh; }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @media (max-width: 900px) {
+        /* ... your media query rules ... */
+        .menu-overlay-panel { width: 100vw; height: 50vh; }
+    }
+body {
+            font-family: var(--font-body);
+            color: var(--primary);
+            background-color: var(--background);
+            font-size: 16px;
+        }
+        
+        /* --- Menu & Header Styles --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .header-logo {
+            display: flex;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .logo-year-wrapper {
+            position: relative;
+            width: 60px;
+            margin-left: 0.5rem;
+        }
+        .logo-year {
+            position: absolute;
+            left: 0;
+            transition: opacity 0.4s ease;
+        }
+        .logo-year--hover {
+            opacity: 0;
+        }
+        .header-logo:hover .logo-year--default {
+            opacity: 0;
+        }
+        .header-logo:hover .logo-year--hover {
+            opacity: 1;
+        }
+
+        .menu-toggle-btn {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 10001;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            mix-blend-mode: difference;
+            opacity: 1; 
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+            z-index: 10000; 
+            display: flex;
+            flex-direction: row;
+        }
+
+        .menu-overlay-panel {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-left { background-color: var(--card-bg); }
+        .menu-right { background-color: var(--primary); }
+
+        .menu-logo-container {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            filter: url(#ripple-filter);
+            text-decoration: none;
+        }
+        
+        .menu-logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .menu-logo-container .pulledin-logo-path {
+            fill: var(--primary);
+            stroke: var(--primary);
+            stroke-width: 8;
+        }
+
+
+        .menu-nav-overlay {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .menu-nav-overlay li {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            line-height: 1.3;
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: transform;
+        }
+        
+        .menu-nav-overlay a {
+            color: var(--background);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* --- NEW VIEWPORT LAYOUT --- */
+        main {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* --- NEW HERO STYLES --- */
+        .shrinking-hero-title {
+            position: fixed;
+            z-index: 1000;
+            /* This is the FINAL state of the title */
+            top: 30px;
+            left: 30px;
+            font-size: 1.75rem; /* Final font size */
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary);
+            /* Set transform origin to top-left for clean scaling */
+            transform-origin: top left;
+        }
+        .hero-spacer {
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* --- Main Content Styles --- */
+        main.event-content-section {
+            position: relative;
+            z-index: 5;
+            background-color: var(--background);
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .event-grid {
+                grid-template-columns: 1fr 2fr;
+                padding: 5rem 2rem;
+            }
+        }
+
+        .event-grid-right > p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .event-grid-left .side-details {
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+        .event-grid-left .detail-item {
+            margin-bottom: 1.5rem;
+        }
+        .event-grid-left .detail-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .event-grid-left .detail-item p,
+        .event-grid-left .jobs-list {
+            font-size: 1.25rem;
+            font-family: var(--font-inconsolata);
+        }
+        .event-grid-left .jobs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .event-grid-left > p:first-child {
+            font-size: 1.25rem;
+            font-family: var(--font-inconsolata);
+            color: blue;
+            margin-bottom: 2.5rem;
+        }
+
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .event-format-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+            border-top: 2px solid transparent;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 0 2rem;
+        }
+
+        .event-format-list::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(60deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% 300%;
+            animation: animated-gradient 8s ease-in-out infinite;
+        }
+
+        .event-format-list li {
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-family: var(--font-inconsolata);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            opacity: 0.9;
+            color: blue;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .event-format-list li:hover {
+            opacity: 1;
+            color: #000;
+        }
+
+
+
+         /* --- Menu & Header Styles --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .header-logo {
+            display: flex;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .logo-year-wrapper {
+            position: relative;
+            width: 60px;
+            margin-left: 0.5rem;
+        }
+        .logo-year {
+            position: absolute;
+            left: 0;
+            transition: opacity 0.4s ease;
+        }
+        .logo-year--hover {
+            opacity: 0;
+        }
+        .header-logo:hover .logo-year--default {
+            opacity: 0;
+        }
+        .header-logo:hover .logo-year--hover {
+            opacity: 1;
+        }
+
+        .menu-toggle-btn {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 10001;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            mix-blend-mode: difference;
+            opacity: 0; 
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+            z-index: 10000; 
+            display: flex;
+            flex-direction: row;
+        }
+
+        .menu-overlay-panel {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-left { background-color: var(--card-bg); }
+        .menu-right { background-color: var(--primary); }
+
+        .menu-logo-container {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            filter: url(#ripple-filter);
+            text-decoration: none;
+        }
+        
+        .menu-logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .menu-logo-container .pulledin-logo-path {
+            fill: var(--primary);
+            stroke: var(--primary);
+            stroke-width: 8;
+        }
+
+
+        .menu-nav-overlay {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .menu-nav-overlay li {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            line-height: 1.3;
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: transform;
+        }
+        
+        .menu-nav-overlay a {
+            color: var(--background);
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Pulledin</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+          --primary: #1a1a1a;
+          --background: #F0EAD6;
+          --card-bg: #E0E0C0;
+          --white: #ffffff;
+          --black: #000000;
+          --highlight-yellow: #FFD700;
+          --font-body: 'Archivo', sans-serif;
+          --font-headline: 'Poppins', sans-serif;
+          --font-kinetic: 'Archivo Black', sans-serif;
+          --font-inconsolata: 'Inconsolata', monospace;
+          --font-space-mono: 'Space Mono', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--primary);
+            color: var(--primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+        #smooth-wrapper, #smooth-content { overflow: visible !important; }
+        .site-header{position:fixed;top:0;left:0;width:100%;padding:1.5rem 2rem;z-index:999;display:flex;justify-content:space-between;align-items:center;color:var(--primary)}.header-logo{display:flex;cursor:pointer;color:inherit;text-decoration:none;font-size:.8rem;font-weight:600}.logo-year-wrapper{position:relative;width:60px;margin-left:.5rem}.logo-year{position:absolute;left:0;transition:opacity .4s ease}.logo-year--hover{opacity:0}.header-logo:hover .logo-year--default{opacity:0}.header-logo:hover .logo-year--hover{opacity:1}.menu-toggle-btn{position:fixed;top:1.5rem;right:2rem;z-index:10001;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--white);mix-blend-mode:difference}.menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;visibility:hidden;z-index:10000;display:flex;flex-direction:row}.menu-overlay-panel{width:50vw;height:100vh;display:flex;justify-content:center;align-items:center}.menu-left{background-color:var(--card-bg)}.menu-right{background-color:var(--primary)}.menu-logo-container{width:200px;height:200px;cursor:pointer;filter:url(#ripple-filter);text-decoration:none}.menu-logo-container svg{width:100%;height:100%}.menu-logo-container .pulledin-logo-path{fill:var(--primary);stroke:var(--primary);stroke-width:8}.menu-nav-overlay{list-style:none;padding:0;margin:0;text-align:left}.menu-nav-overlay li{font-family:'Poppins',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:600;line-height:1.3;opacity:0;transform:translateY(20px);will-change:transform}.menu-nav-overlay a{color:var(--background);text-decoration:none;display:inline-block}.space-warp-hero{position:relative;height:100vh;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--white)}#starfield-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;opacity:0}.hero-subheadline{font-family:var(--font-space-mono);font-size:clamp(.8rem,2vw,1rem);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem;color:var(--white);z-index:2;opacity:0}.hero-headline-warp{font-family:var(--font-headline);font-size:clamp(2.5rem,8vw,6rem);line-height:1.1;text-align:center;z-index:2;position:relative;color:var(--white);opacity:0}#main-content{background-color:var(--background);position:relative;z-index:10}.intro-section{padding:12rem 2rem 4rem;max-width:1100px;margin:0 auto;text-align:left}.intro-body{font-family:var(--font-headline);font-weight:600;font-size:clamp(1.2rem,4vw,2.2rem);line-height:1.6;max-width:900px;margin:0}.intro-body .highlight-word{position:relative;display:inline-block}.intro-body .highlight-word::before{content:'';position:absolute;left:-.2em;right:-.2em;top:.1em;bottom:.1em;background-color:var(--highlight-yellow);z-index:-1;transform:scaleX(var(--scaleX,0));transform-origin:left}.kinetic-disintegration-section{height:200vh;width:100%;position:relative}.kinetic-text-container{height:100vh;width:100%;position:sticky;top:0;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden}.kinetic-word{font-family:var(--font-kinetic);font-size:clamp(5rem,20vw,18rem);line-height:.85;color:var(--primary);text-transform:uppercase;white-space:nowrap}.capture-canvas{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.services-container{padding:0 2rem 12rem;max-width:1200px;margin:0 auto}.service-item{padding:2rem 0;border-bottom:1px solid rgba(0,0,0,.2);cursor:pointer}.service-item-header{display:flex;justify-content:space-between;align-items:center;gap:2rem}.service-item-title{font-family:var(--font-headline);font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;flex-grow:1}.service-item-icon{font-family:var(--font-inconsolata);font-size:1.5rem;transition:transform .5s ease}.service-item.is-open .service-item-icon{transform:rotate(45deg)}.service-item-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .8s ease-out,opacity .5s ease-out}.service-item.is-open .service-item-content{max-height:500px;opacity:1}.service-item-content-inner{padding:3rem 0 1rem}.service-image-container{display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem}.service-image{width:100%;max-width:400px;aspect-ratio:4/5;overflow:hidden;/* CORRECTED: Removed filter effect */}.service-image img{width:100%;height:100%;object-fit:cover}.service-image-meta{font-family:var(--font-space-mono);font-size:12px;text-transform:uppercase;writing-mode:vertical-rl;padding:1rem;letter-spacing:.1em;opacity:.6}.meta-left{transform:rotate(180deg)}.service-description{max-width:700px;margin:0 auto;text-align:center}.service-description h3{font-family:var(--font-headline);font-size:1.5rem;margin-bottom:1rem}.service-description p{font-size:1.1rem;line-height:1.7;margin-bottom:1rem}.scroll-hint-container-hero{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;align-items:center;flex-direction:column;z-index:5;pointer-events:none;color:var(--white)}.scroll-hint-container-hero .mousey{border-color:var(--white)}.scroll-hint-container-hero .scroller{background-color:var(--white)}.mousey{width:3px;padding:10px 15px;height:35px;border:2px solid;border-radius:25px;opacity:.75;box-sizing:content-box;margin-bottom:10px}.scroller{width:3px;height:10px;border-radius:25%;animation-name:scroll;animation-duration:2.2s;animation-timing-function:cubic-bezier(.15,.41,.69,.94);animation-iteration-count:infinite}@keyframes scroll{0%{opacity:0}10%{transform:translateY(0);opacity:1}100%{transform:translateY(15px);opacity:0}}.scroll-hint-text{font-size:12px;font-family:var(--font-inconsolata)}@media (max-width:900px){.menu-overlay{flex-direction:column}.menu-overlay-panel{width:100vw;height:50vh}}@media (max-width:768px){.service-image-meta{display:none}}
+    </style>
+</head>
+<body>
+    <svg style="display:none">
+      <defs>
+        <filter id="ripple-filter"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="1" result="warp" /><feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="0" in="SourceGraphic" in2="warp" result="ripple" /></filter>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+        <a href="/" class="header-logo" style="text-decoration: none; color: inherit;">
+            <span class="logo-name">PULLEDIN</span>
+            <div class="logo-year-wrapper">
+                <span class="logo-year logo-year--default">© 2025</span>
+                <span class="logo-year logo-year--hover">EST. 2008</span>
+            </div>
+        </a>
+    </header>
+    <div class="menu-toggle-btn"><span class="menu-text">MENU</span></div>
+    <div class="menu-overlay">
+        <div class="menu-overlay-panel menu-left">
+            <a href="/" class="menu-logo-container"><svg viewBox="0 0 1000 250"><path class="pulledin-logo-path" d="M118.2,76.4c-6.4-6.3-13.7-11.2-22.1-14.8s-17.3-5.4-27-5.4-18.4,1.8-26.8,5.4-15.8,8.5-22.1,14.8c-6.3,6.3-11.2,13.6-14.8,21.9S0,115.6,0,125.3v125h27.5v-55.5h41.7c9.7,0,18.7-1.8,27-5.4,8.3-3.6,15.7-8.6,22.1-15s11.4-13.8,15-22.2c3.6-8.4,5.4-17.4,5.4-26.8s-1.8-18.7-5.4-27c-3.7-8.5-8.7-15.7-15.1-22Z M258.9,124.7c0,5.8-1.1,11.2-3.2,16.4-2.2,5.1-5.1,9.6-8.9,13.4s-8.3,6.8-13.4,9c-5.2,2.2-10.6,3.2-16.4,3.2s-11.2-1.1-16.2-3.2c-5-2.2-9.5-5.1-13.3-9-3.8-3.8-6.8-8.3-8.9-13.4-2.2-5.1-3.2-10.6-3.2-16.4V55.5h-27.5v69.1c0,9.5,1.8,18.4,5.4,26.8,3.6,8.4,8.5,15.8,14.8,22.2s13.6,11.4,22.1,15c8.4,3.6,17.4,5.4,26.8,5.4s18.7-1.8,27-5.4c8.3-3.6,15.7-8.6,22.1-15s11.4-13.8,15-22.2,5.4-17.4,5.4-26.8V55.5h-27.5v69.2h-.1Z M294.7,0h27.5v194.1h-27.5z M332.6,0h27.5v194.1h-27.5z M488.8,76.5c-6.8-6.8-14.5-11.9-23-15.3s-17.2-5.1-26.1-5.1-17.5,1.7-26.1,5.1c-8.5,3.4-16.2,8.5-23,15.3s-11.8,14.4-15.1,22.8c-3.3,8.4-4.9,17.1-4.9,25.9s1.6,17.5,4.9,26.1c3.3,8.5,8.3,16.2,15.1,23,6.6,6.6,14.1,11.6,22.5,15.1s17.3,5.2,26.5,5.2,18.1-1.8,26.5-5.2c8.4-3.5,15.9-8.5,22.5-15.1l9.6-9.6-19.4-19.4-9.6,9.6c-6.6,6.6-14.2,10.5-23,11.9-8.7,1.3-17,.1-24.8-3.9l76.8-76.8-9.4-9.6h0Z M619,55.5h-41.7c-9.5,0-18.4,1.8-26.8,5.4-8.4,3.6-15.8,8.5-22.2,14.8s-11.4,13.6-15,21.9c-3.6,8.3-5.4,17.3-5.4,27s1.8,18.4,5.4,26.8c3.6,8.4,8.6,15.8,15,22.2s13.8,11.4,22.2,15,17.4,5.4,26.8,5.4,18.4-1.8,26.8-5.4c8.4-3.6,15.8-8.6,22.1-15s11.2-13.8,14.8-22.2,5.4-17.4,5.4-26.8V0h-27.4v55.5h0Z M656.3,55.5h27.2v138.6h-27.2z M825.6,98c-3.6-8.3-8.6-15.6-15-21.9s-13.7-11.2-22.1-14.8c-8.3-3.6-17.3-5.4-27-5.4s-18.4,1.8-26.8,5.4c-8.4,3.6-15.8,8.5-22.1,14.8-6.3,6.3-11.2,13.6-14.8,21.9s-5.4,17.3-5.4,27v69.4h27.5v-69.4c0-5.8,1.1-11.2,3.2-16.2,2.2-5,5.1-9.5,8.9-13.3,3.8-3.8,8.2-6.8,13.3-9,5-2.2,10.4-3.2,16.2-3.2s11.2,1.1,16.4,3.2c5.1,2.2,9.6,5.2,13.4,9,3.8,3.8,6.8,8.2,8.9,13.3s3.2,10.4,3.2,16.2v69.4h27.6v-69.4c0-9.7-1.8-18.7-5.4-27h0Z M855,125.2l81.1,125.1h60L915.4,125.2,997.1.1h-61L855,125.2z"></path></svg></a>
+        </div>
+        <div class="menu-overlay-panel menu-right">
+            <ul class="menu-nav-overlay">
+                <li><a href="/">Home</a></li>
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main>
+                <section class="space-warp-hero">
+                    <canvas id="starfield-canvas"></canvas>
+                    <h3 class="hero-subheadline">Services</h3>
+                    <h1 class="hero-headline-warp">Formats that Build Cultures and Breed Action</h1>
+                    <div class="scroll-hint-container-hero">
+                        <div class="mousey"><div class="scroller"></div></div>
+                        <span class="scroll-hint-text">Scroll to Explore</span>
+                    </div>
+                </section>
+                <div id="main-content">
+                    <section class="intro-section"><p class="intro-body"></p></section>
+                    <section class="kinetic-disintegration-section">
+                        <div class="kinetic-text-container">
+                            <div class="kinetic-word">IDEAS</div>
+                            <div class="kinetic-word">BECOME</div>
+                            <div class="kinetic-word">ACTIONS</div>
+                        </div>
+                    </section>
+                    <div class="services-container">
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Executive Production & Curation</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Production</span></div><div class="service-image"><img src="/assets/images/events/TED30/1.jpg" alt="Executive Production"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>We build icons.</h3><p>We serve as your high-level strategic partners, embedding with your leadership to shape the event's core vision. This goes beyond management to include narrative development, curating world-class speakers and content, and guiding the project's soul from the first concept meeting to the final standing ovation. We handle the complexity so you can focus on the message.</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Event Strategy & Format Design</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Strategy</span></div><div class="service-image"><img src="/assets/images/Events/vrargs2019/5.jpg" alt="Event Strategy"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>Format is EVERYTHING.</h3><p>We work with you to design innovative and future-proof event formats that build culture and captivate your specific audience with an attention to market needs, event flow, content possibilities, and partnership growth opportunities. Whether you're looking to launch a new global summit, foster an intimate developer community, or revolutionize an industry conference, we define the 'why' and the 'how' to ensure your event is built to build a legacy.</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Event Technology Consulting (AI & XR)</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Technology</span></div><div class="service-image"><img src="/assets/images/Events/igs1/serv1.png" alt="Tech Consulting"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>We are fluent in the language of the future.</h3><p>Unlike producers who bolt on technology as an afterthought, we infuse AI and Extended Reality (XR) into the very fabric of your event. We’ve been producing the world’s most important XR events for a while so we aren’t guessing - we are world-renowned experts in the space. With AI-aided production we can efficiently accelerate, iterate, and grow events. We share our professional knowledge through global speaking engagements and consulting production teams in person. Don’t get stressed - get ready to accelerate and elevate in ways that will inspire you to produce more!</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Speaker & Content Programming</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Content</span></div><div class="service-image"><img src="/assets/images/events/TED30/33.jpg" alt="Content Programming"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>The heart of any great event is its content.</h3><p>With decades of experience working with global leaders, from Prime Ministers to Fortune 500 CEOs and tech pioneers, we have an unparalleled network. We manage the entire process of curating, securing, and onboarding speakers who will not only draw a crowd but deliver your message with authority and impact.</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Virtual & Hybrid Event Production</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Virtual</span></div><div class="service-image"><img src="/assets/images/Events/igs1/igs33.jpeg" alt="Virtual Events"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>We are world-class experts in virtual experiences.</h3><p>Having pivoted a 2,500-person physical event into a 14,000-attendee global virtual summit in under three months, we understand the unique challenges of the digital stage. From multi-track conferences on Zoom to fully immersive events in VR, we keep teams focused, on-budget, and highly effective, no matter the platform.</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Full-Scale Event Management</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Management</span></div><div class="service-image"><img src="/assets/images/Events/igs1/9.jpg" alt="Event Management"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>This is our comprehensive, end-to-end solution.</h3><p>Ready to ditch those tedious "process-driven"/PMP-time-wasters and join the event production revolution with us? We get HUGE things done with a tiny team because we employ tech to quickly solve problems - we are definitely not like the rest and proud of it.  We take on the complete operational workload, managing every logistical detail with precision and agility. This includes vendor negotiation, platform management, marketing and community strategy, and on-site (or virtual) execution. We are the engine that ensures a flawless and stress-free experience for you and your attendees.</p></div></div></div></div>
+                        <div class="service-item"><div class="service-item-header"><span class="service-item-title">Partnerships</span><span class="service-item-icon">+</span></div><div class="service-item-content"><div class="service-item-content-inner"><div class="service-image-container"><div class="service-image-meta meta-left"><span>Partnerships</span></div><div class="service-image"><img src="/assets/images/Events/sponsors/sponsorwall.png" alt="Partnerships"/></div><div class="service-image-meta meta-right"><span>PULLEDIN 2025</span></div></div><div class="service-description"><h3>We have made thousands of partnerships come to life.</h3><p>Our approach is built on bringing incredible audiences that fit partner needs, so we are selective about what we can represent. Let’s talk.</p></div></div></div></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined') { return; }
+            gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, MorphSVGPlugin);
+            
+            let smoother = ScrollSmoother.create({
+                wrapper: "#smooth-wrapper",
+                content: "#smooth-content",
+                smooth: 2,
+                effects: true
+            });
+
+            // --- Starfield Animation ---
+            const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement;
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let stars = [];
+                let warp = { speed: 0.05 };
+                function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+                function createStars() {
+                    stars = [];
+                    const colors = ["#FFFFFF", "#87CEEB", "#FF69B4"];
+                    for (let i = 0; i < 122; i++) {
+                        stars.push({
+                            x: Math.random() * canvas.width - canvas.width / 2,
+                            y: Math.random() * canvas.height - canvas.height / 2,
+                            z: Math.random() * 1000,
+                            color: gsap.utils.random(colors)
+                        });
+                    }
+                }
+                function drawStars() {
+                    if(!ctx) return;
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.save();
+                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                    stars.forEach(star => {
+                        star.z -= warp.speed;
+                        if (star.z <= 0) { star.z = 1000; }
+                        const k = 128.0 / star.z;
+                        const px = star.x * k;
+                        const py = star.y * k;
+                        const size = (1 - star.z / 1000) * 3.35;
+                        ctx.fillStyle = star.color;
+                        ctx.beginPath();
+                        ctx.arc(px, py, size, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    ctx.restore();
+                }
+                createStars();
+                gsap.ticker.add(drawStars);
+
+                function initHeroAnimation() {
+                    const heroTimeline = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: ".space-warp-hero",
+                            start: "top top",
+                            end: "+=200%", 
+                            scrub: 1,
+                            pin: true,
+                        }
+                    });
+                    heroTimeline.to([".hero-headline-warp", ".hero-subheadline"], { opacity: 1, scale: 1, filter: "blur(0px)", ease: "power2.out" }, 0);
+                    heroTimeline.to("#starfield-canvas", { opacity: 1, ease: "power1.inOut" }, 0);
+                    heroTimeline.to(warp, { speed: 2, ease: "power1.in" }, 0.2);
+                    heroTimeline.to([".hero-headline-warp", ".hero-subheadline", ".scroll-hint-container-hero"], { opacity: 0, ease: "power1.in" }, 0.8);
+                    heroTimeline.to("#starfield-canvas", { yPercent: -50, opacity: 0, ease: "power1.in" }, 0.8);
+                    heroTimeline.to("body", { backgroundColor: "var(--background)", ease: "none" }, 0.8);
+                }
+                initHeroAnimation();
+            }
+
+            // --- Animated Intro Text ---
+            const introBody = document.querySelector(".intro-body");
+            if (introBody) {
+                const introText = `At Pulledin, we believe that great ideas deserve to be seen and shared. We <span class="highlight-word">specialize</span> in the Art of Taking Action - and we bring people together through events with our keen ability to <span class="highlight-word">design</span> formats that build cultures. We <span class="highlight-word">produce</span>, <span class="highlight-word">curate</span>, and <span class="highlight-word">execute</span> events that drive technology, education, and life. We make strategic partnerships valuable. We help future leaders <span class="highlight-word">connect</span> and help <span class="highlight-word">highlight</span> amazing opportunities to new people. Explore our solutions to find the perfect services for your next event, or discover inspiration in our showcase of past productions.`;
+                introBody.innerHTML = introText;
+
+                const highlightWords = gsap.utils.toArray('.highlight-word');
+                gsap.set(highlightWords, { '--scaleX': 0 });
+                gsap.to(highlightWords, {
+                    '--scaleX': 1,
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: ".intro-section",
+                        scrub: true,
+                        start: "top center",
+                        end: "bottom center"
+                    }
+                });
+            }
+
+            // --- Kinetic Disintegration Animation ---
+            const kineticSection = document.querySelector('.kinetic-disintegration-section');
+            if (kineticSection) {
+                const kineticTextContainer = kineticSection.querySelector('.kinetic-text-container');
+                const COUNT = 75;
+                let canvases = [];
+                function createDisintegrationCanvases() {
+                    if (kineticTextContainer && typeof html2canvas !== 'undefined') {
+                        html2canvas(kineticTextContainer, { backgroundColor: null }).then((canvas) => {
+                            const width = canvas.width;
+                            const height = canvas.height;
+                            const ctx = canvas.getContext("2d");
+                            const imageData = ctx.getImageData(0, 0, width, height);
+                            let dataList = [];
+                            kineticTextContainer.style.opacity = 0;
+                            for (let i = 0; i < COUNT; i++) {
+                                dataList.push(ctx.createImageData(width, height));
+                            }
+                            for (let x = 0; x < width; x++) {
+                                for (let y = 0; y < height; y++) {
+                                    const index = (x + y * width) * 4;
+                                    const dataIndex = Math.floor((COUNT * (Math.random() + (2 * x) / width)) / 3);
+                                    for (let p = 0; p < 4; p++) {
+                                        dataList[dataIndex].data[index + p] = imageData.data[index + p];
+                                    }
+                                }
+                            }
+                            dataList.forEach((data, i) => {
+                                let clonedCanvas = canvas.cloneNode();
+                                clonedCanvas.getContext("2d").putImageData(data, 0, 0);
+                                clonedCanvas.className = "capture-canvas";
+                                kineticSection.appendChild(clonedCanvas);
+                                canvases.push(clonedCanvas);
+                            });
+                            setupDisintegrationAnimation();
+                        });
+                    }
+                }
+                function setupDisintegrationAnimation() {
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: kineticSection,
+                            scrub: 1,
+                            start: "center center",
+                            end: "bottom bottom",
+                            pin: kineticSection
+                        }
+                    });
+                    canvases.forEach((canvas, i) => {
+                        const randomAngle = (Math.random() - 0.5) * 2 * Math.PI;
+                        const randomRotationAngle = 30 * (Math.random() - 0.5);
+                        tl.to(canvas, {
+                            duration: 1,
+                            rotate: randomRotationAngle,
+                            translateX: 40 * Math.sin(randomAngle),
+                            translateY: 40 * Math.cos(randomAngle),
+                            opacity: 0,
+                            delay: (i / canvases.length) * 2
+                        }, 0);
+                    });
+                }
+                ScrollTrigger.create({
+                    trigger: kineticSection,
+                    start: "top 80%",
+                    once: true,
+                    onEnter: () => {
+                        createDisintegrationCanvases();
+                    }
+                });
+            }
+
+            // --- Accordion Logic ---
+            const items = gsap.utils.toArray('.service-item') as HTMLElement[];
+            const displacementMap = document.querySelector('#ripple-filter feDisplacementMap');
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    const state = Flip.getState(items);
+                    const isOpen = item.classList.contains('is-open');
+                    if (isOpen) {
+                        item.classList.remove('is-open');
+                    } else {
+                        items.forEach(i => i.classList.remove('is-open'));
+                        item.classList.add('is-open');
+                        if (displacementMap) {
+                            gsap.fromTo(displacementMap, { attr: { scale: 0 } }, { attr: { scale: 50 }, duration: 0.5, ease: 'power2.out',
+                                  onComplete: () => {
+                                    gsap.to(displacementMap, { attr: { scale: 0 }, duration: 0.5, ease: 'power2.in' });
+                                  }
+                                }
+                            );
+                        }
+                    }
+                    Flip.from(state, {
+                        duration: 0.8,
+                        ease: "elastic.out(1, 0.75)",
+                        onComplete: () => smoother.refresh()
+                    });
+                });
+            });
+
+            // --- Menu Logic ---
+            const menuToggleBtn = document.querySelector('.menu-toggle-btn');
+            if (menuToggleBtn) {
+                let menuTimeline; 
+                const menuOverlay = document.querySelector('.menu-overlay');
+                const menuLeft = document.querySelector('.menu-left');
+                const menuRight = document.querySelector('.menu-right');
+                const menuItems = gsap.utils.toArray('.menu-nav-overlay li');
+                const menuLogoContainer = document.querySelector('.menu-logo-container');
+                const menuLogoPath = document.querySelector('.pulledin-logo-path');
+                const chevronPath = "M384.4,250L625,0,500,0,250,250,500,500,625,500z";
+                let mm = gsap.matchMedia();
+                mm.add({
+                    isDesktop: "(min-width: 769px)",
+                    isMobile: "(max-width: 768px)"
+                }, (context) => {
+                    let { isDesktop } = context.conditions;
+                    gsap.set(menuLeft, { xPercent: isDesktop ? -100 : 0, yPercent: isDesktop ? 0 : -100 });
+                    gsap.set(menuRight, { xPercent: isDesktop ? 100 : 0, yPercent: isDesktop ? 0 : 100 });
+                    menuTimeline = gsap.timeline({
+                        paused: true,
+                        onStart: () => { 
+                            gsap.set(menuOverlay, { visibility: 'visible' });
+                            smoother.paused(true);
+                            gsap.set(menuToggleBtn, { mixBlendMode: 'normal', color: isDesktop ? 'var(--primary)' : 'var(--background)' });
+                        },
+                        onReverseComplete: () => { 
+                            gsap.set(menuOverlay, { visibility: 'hidden' });
+                            smoother.paused(false);
+                            gsap.set(menuToggleBtn, { mixBlendMode: 'difference', clearProps: "color" });
+                        }
+                    }).reverse();
+
+                    menuTimeline
+                        .to(menuLeft, { xPercent: 0, yPercent: 0, duration: 0.8, ease: 'power3.inOut' })
+                        .to(menuRight, { xPercent: 0, yPercent: 0, duration: 0.8, ease: 'power3.inOut' }, "<")
+                        .to(menuItems, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' }, "-=0.5");
+                    return () => { if (menuTimeline) menuTimeline.kill(); }
+                });
+
+                menuToggleBtn.addEventListener('click', () => {
+                    menuTimeline.reversed(!menuTimeline.reversed());
+                    menuToggleBtn.querySelector('.menu-text').textContent = menuTimeline.reversed() ? "MENU" : "CLOSE";
+                });
+                
+                if (menuLogoContainer && displacementMap) {
+                    const rippleFilter = displacementMap;
+                    menuLogoContainer.addEventListener('mouseenter', () => {
+                        gsap.to(rippleFilter, { duration: 0.8, attr: { scale: 50 }, ease: "power2.out" });
+                        gsap.to(menuLogoPath, { duration: 0.8, morphSVG: chevronPath, ease: "power2.inOut" });
+                    });
+                    menuLogoContainer.addEventListener('mouseleave', () => {
+                        gsap.to(rippleFilter, { duration: 0.8, attr: { scale: 0 }, ease: "power2.in" });
+                        gsap.to(menuLogoPath, { duration: 0.8, morphSVG: menuLogoPath, ease: "power2.inOut" });
+                    });
+                }
+
+                const magneticLinks = gsap.utils.toArray('.menu-nav-overlay a');
+                magneticLinks.forEach(link => {
+                    link.addEventListener('mousemove', e => {
+                        const { left, top, width, height } = link.getBoundingClientRect();
+                        const x = (e.clientX - left) - (width / 2);
+                        const y = (e.clientY - top) - (height / 2);
+                        gsap.to(link, { x: x * 0.4, y: y * 0.4, duration: 0.8, ease: 'power4.out' });
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        gsap.to(link, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.4)' });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

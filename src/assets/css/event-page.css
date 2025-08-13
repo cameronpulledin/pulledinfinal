@@ -1,0 +1,129 @@
+/* assets/css/event-page.css */
+
+/* This ensures our main content has space to scroll into */
+body {
+	min-height: 200vh;
+}
+
+/* ================================
+EVENT HERO TITLE
+================================
+*/
+.event-hero-title {
+	/* Positioning & Sizing */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	padding: 0 2rem;
+	
+	/* Typography */
+	font-family: 'Poppins', sans-serif;
+	font-size: clamp(4rem, 18vw, 16rem);
+	font-weight: 600;
+	line-height: 0.9;
+	text-align: center;
+	
+	/* --- MODIFICATIONS --- */
+	color: var(--white); /* Set to white for the blend mode to work */
+	mix-blend-mode: difference; /* Inverts the background color */
+
+	/* Stacking context */
+	z-index: 10;
+	will-change: transform, font-size, opacity; /* Optimize for animation */
+}
+
+/* ================================
+EVENT CONTENT SECTION
+================================
+*/
+.event-content-section {
+	/* Hidden initially by being pushed down and transparent */
+	position: relative;
+	padding-top: 100vh;
+	
+	z-index: 5;
+	background-color: var(--background);
+	will-change: opacity;
+}
+
+.event-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 2rem;
+	padding: 4rem 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* --- MODIFICATION --- */
+/* The left grid h2 style is no longer needed */
+
+.event-grid-left p {
+	font-family: var(--font-inconsolata);
+	font-size: 1rem;
+	color: #666;
+}
+
+.event-grid-right p {
+	font-family: var(--font-body);
+	font-size: 1.1rem;
+	line-height: 1.6;
+	margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustment for the grid */
+@media (max-width: 768px) {
+	.event-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* assets/css/event-page.css */
+
+/* ... all your existing event page styles ... */
+
+
+/* ================================
+EVENT DETAILS GRID
+================================
+*/
+.event-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 2rem; /* Space between columns */
+    margin-top: 5rem; /* Whitespace above the grid */
+    padding-top: 2rem;
+    border-top: 1px solid var(--light-gray-border);
+
+    /* Initial state for GSAP animation */
+    opacity: 0;
+    transform: scale(0.98); /* Start slightly zoomed out */
+    will-change: transform, opacity;
+}
+
+.detail-item h3 {
+    font-family: var(--font-space-mono);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #a0a0a0; /* Light grey */
+    letter-spacing: 0.1em; /* Wider letter spacing */
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.detail-item p {
+    font-family: var(--font-space-mono);
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0; /* Override default p margin */
+}
+
+/* Make details grid stack on mobile */
+@media (max-width: 768px) {
+	.event-details-grid {
+		grid-template-columns: 1fr;
+        gap: 3rem;
+	}
+}

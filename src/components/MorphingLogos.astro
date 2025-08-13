@@ -1,0 +1,56 @@
+---
+// A self-contained component for the morphing logo animation.
+---
+
+<div class="logo-morph-container">
+    <svg viewBox="0 0 100 100" class="morph-svg">
+        <path class="logo-path" fill="var(--primary)" d="M50,5A45,45 0 1 1 5,50A45,45 0 0 1 50,5Z"></path> 
+        <path class="logo-path" fill="var(--primary)" d="M10 10 H90 V90 H10 Z" style="visibility: hidden;"></path> 
+        <path class="logo-path" fill="var(--primary)" d="M50 10 L90 90 L10 90 Z" style="visibility: hidden;"></path> 
+    </svg>
+    
+</div>
+
+<style>
+    .logo-morph-container {
+        width: 100%;
+        max-width: 250px;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto 2.5rem auto; /* Center it and add space below */
+    }
+    .morph-svg .logo-path {
+        fill: var(--primary);
+        stroke: none;
+    }
+</style>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof gsap === 'undefined' || typeof MorphSVGPlugin === 'undefined') { return; }
+        gsap.registerPlugin(MorphSVGPlugin);
+
+        const morphContainers = gsap.utils.toArray('.logo-morph-container');
+        
+        morphContainers.forEach(container => {
+            const paths = container.querySelectorAll(".logo-path");
+            if (paths.length < 2) return;
+
+            const tl = gsap.timeline({
+                repeat: -1,
+                defaults: {
+                    duration: 1.2,
+                    ease: "power2.inOut"
+                }
+            });
+
+            for (let i = 0; i < paths.length; i++) {
+                let from = paths[i];
+                let to = paths[(i + 1) % paths.length];
+                
+                tl.to(from, {
+                    morphSVG: to
+                }, `+=${2}`); // Animate to next shape, wait 2 seconds
+            }
+        });
+    });
+</script>

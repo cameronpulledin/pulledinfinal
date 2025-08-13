@@ -1,0 +1,626 @@
+---
+// This is the final, complete, standalone "About" page with all features integrated.
+import { Image } from 'astro:assets';
+
+// Local assets
+import toolsImage from '../assets/images/Events/sxd/tools-image.png';
+import tedImage from '../assets/images/Events/ted30/12.jpg';
+import anneMariePortrait from '../assets/images/team/anne-marie-enns.jpg';
+import lucianPortrait from '../assets/images/team/7.jpg';
+import cameronPortrait from '../assets/images/team/cameron-kootz.jpg';
+import abstractImage1 from '../assets/images/abstract/abstract-1.png';
+import abstractImage2 from '../assets/images/abstract/abstract-2.png';
+import fullBgImage1 from '../assets/images/abstract/full-bg-1.png';
+import fullBgImage2 from '../assets/images/abstract/full-bg-2.png';
+import ex1 from "../assets/images/Events/servicesgallery/lb1.jpg"
+import ex2 from "../assets/images/Events/servicesgallery/igs-group1.jpg"
+import ex3 from "../assets/images/Events/servicesgallery/Anne-marie-IGS-stage.jpeg"
+import ex4 from "../assets/images/Events/servicesgallery/9.jpg"
+import ex5 from "../assets/images/Events/servicesgallery/bse-2004.jpg"
+
+// Importing all partner logos from src/assets/
+import accentureLogo from '../assets/images/corplogos25/svg/white/accenture-white.svg';
+import adobeLogo from '../assets/images/corplogos25/svg/white/adobe-white.svg';
+import awsLogo from '../assets/images/corplogos25/svg/white/Amazon_Web_Services_Logo-white.svg';
+import amdLogo from '../assets/images/corplogos25/svg/white/AMD_Logo-white.svg';
+import autodeskLogo from '../assets/images/corplogos25/svg/white/Autodesk_Logo-white.svg';
+import basfLogo from '../assets/images/corplogos25/svg/white/BASF-Logo_white.svg';
+import canadaLogo from '../assets/images/corplogos25/svg/white/Canada_Wordmark-vrara-white.svg';
+import cnnLogo from '../assets/images/corplogos25/svg/white/CNN.svg';
+import creativeBcLogo from '../assets/images/corplogos25/svg/white/CreativeBC_BCID_CityofVan_Lockup_cmyk_pos.svg';
+import deltaLogo from '../assets/images/corplogos25/svg/white/delta-white.svg';
+import deutscheTelekomLogo from '../assets/images/corplogos25/svg/white/Deutsche_Telekom_2022.svg';
+import eyLogo from '../assets/images/corplogos25/svg/white/EY-white.svg';
+import qualcommLogo from '../assets/images/corplogos25/svg/white/qualcomm-white.svg';
+import holidayInnLogo from '../assets/images/corplogos25/svg/white/Holiday_Inn_Logo.svg';
+import hpLogo from '../assets/images/corplogos25/svg/white/HP_white.svg';
+import metaLogo from '../assets/images/corplogos25/svg/white/meta-white.svg';
+import mastercardLogo from '../assets/images/corplogos25/svg/white/mastercard-white.png';
+import htcLogo from '../assets/images/corplogos25/svg/white/htc-vrara-white.svg';
+import ibmLogo from '../assets/images/corplogos25/svg/white/IBM_logo-white.svg';
+import intelLogo from '../assets/images/corplogos25/svg/white/Intel-logo-vrara-white.svg';
+import lenovoLogo from '../assets/images/corplogos25/svg/white/Lenovo_logo_2015-white.svg';
+import llamaZooLogo from '../assets/images/corplogos25/svg/white/Llama-Zoo-logo-white.svg';
+import microsoftLogo from '../assets/images/corplogos25/svg/white/Microsoft_logo-white.svg';
+import motiveIoLogo from '../assets/images/corplogos25/svg/white/motive-io-white.svg';
+import toshibaLogo from '../assets/images/corplogos25/svg/white/Toshiba_logo-white.svg';
+import unityLogo from '../assets/images/corplogos25/svg/white/Unity_Technologies_logo-white.svg';
+import wayfairLogo from '../assets/images/corplogos25/svg/white/Wayfair_2024_logo.svg';
+
+
+// Array of images for the click-to-expand grid
+const gridImages = [
+    ex1, ex2, ex5, 
+    ex3, lucianPortrait, tedImage, 
+    ex4, cameronPortrait, anneMariePortrait
+];
+
+// Array for the partner marquee
+const marqueeLogos = [
+    accentureLogo, adobeLogo, awsLogo, amdLogo, autodeskLogo, htcLogo, ibmLogo, intelLogo, microsoftLogo, qualcommLogo, metaLogo, mastercardLogo, basfLogo, canadaLogo, cnnLogo, creativeBcLogo, deltaLogo, deutscheTelekomLogo, eyLogo, holidayInnLogo, hpLogo, lenovoLogo, llamaZooLogo, motiveIoLogo, toshibaLogo, unityLogo, wayfairLogo
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pulledin</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style is:global>
+        :root {
+          --primary: #1a1a1a;
+          --background: #F0EAD6;
+          --white: #ffffff;
+          --font-body: 'Inter', sans-serif;
+          --font-headline: 'Syne', sans-serif;
+          --font-mono: 'Space Mono', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .about-page-body {
+            background-color: #0A0A0A;
+            color: var(--white);
+            font-family: var(--font-body);
+            cursor: none;
+            overscroll-behavior: none;
+        }
+        .custom-pointer {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <style>
+        /* --- Hero Section Styles --- */
+        .title-reveal-section{height:200vh;position:relative;background-color:#0a0a0a}
+        .title-container{height:100vh;width:100%;position:sticky;top:0;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;padding:5vh 0}
+        .hero-main-content{flex-grow:1;display:grid;place-items:center;width:100%;position:relative}
+        .headline-reveal{font-family:var(--font-headline);font-weight:800;font-size:clamp(2.5rem,10vw,12rem);line-height:.9;text-transform:uppercase;text-align:center;color:#fff;position:absolute}.headline-reveal .text-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url(https://i.imgur.com/5uV5YV2.mp4) center/cover;-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.5}.headline-reveal span{display:inline-block;clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%)}
+        .testimonial-container{width:90%;text-align:center;opacity:0;visibility:hidden;position:absolute}.testimonial-quote{font-family:var(--font-headline);font-size:clamp(2rem,5vw,4rem);line-height:1.2;max-width:900px;margin:0 auto;position:relative}.testimonial-author{font-family:var(--font-mono);font-size:1rem;text-transform:uppercase;margin-top:1rem;opacity:.7}
+        .logo-marquee-container{width:100%;overflow:hidden;white-space:nowrap;opacity:0;transform:translateY(50px);flex-shrink:0}
+        .logo-marquee-container:hover .logo-slide{animation-play-state:paused}
+        .logo-slide{display:inline-block;animation:60s slide infinite linear}
+        .logo-slide img{height:40px;margin:0 40px;vertical-align:middle;opacity:.5;transition:opacity .3s ease}
+        .testimonial-container {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    text-align:center;
+    opacity:0;
+    visibility:hidden; /* This is the fix */}
+        @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+        /* --- Horizontal Scroll Section Styles --- */
+        .page-container {
+            position: relative;
+            background-color: #0A0A0A;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .horizontal-container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+            width: 800vw; /* 100vw per panel */
+            will-change: transform;
+        }
+        .panel {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        .panel-split {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .editorial-content, .editorial-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5vw;
+            height: 100%;
+        }
+        .editorial-content {
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .panel-full {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .panel-full-background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .panel-full-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 10, 0.6); z-index: 2;
+        }
+        .panel-full-content {
+            position: relative; z-index: 3;
+            color: white;
+            padding: 5vw;
+        }
+        .mega-text {
+            font-family: var(--font-headline);
+            font-weight: 800;
+            font-size: clamp(4rem, 15vw, 14rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+        .panel-content {
+            max-width: 50ch;
+        }
+        .panel-content .chapter, .panel-content .title {
+            font-family: var(--font-mono);
+        }
+        .panel-content .chapter {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            opacity: 0.7;
+        }
+        .panel-content .title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .panel-content .text p {
+            font-family: var(--font-body); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.8;
+        }
+        
+        /* Video Panel Styles */
+        .video-panel {
+            justify-content: center;
+            align-items: center;
+        }
+        .video-wrapper {
+            width: 90%;
+            max-width: 1400px;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .partners-panel {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+        .partner-marquee {
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+        }
+        .partner-marquee-content {
+            display: flex;
+            width: fit-content;
+            animation: marquee 60s linear infinite;
+        }
+        .partner-marquee-content > * {
+            flex-shrink: 0;
+            padding: 0 40px;
+        }
+        .partner-marquee-content img {
+            max-height: 45px;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Stylized Image Wrapper */
+        .stylized-image-wrapper {
+          position: relative; display: block; width: 100%; height: 100%; overflow: hidden;
+        }
+        .stylized-image-wrapper img, .editorial-image :global(img) {
+          display: block; filter: grayscale(100%); width: 100%; height: 100%; object-fit: cover;
+        }
+        .stylized-image-wrapper::after {
+          content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23n)" opacity="0.15"/></svg>');
+          mix-blend-mode: overlay; pointer-events: none;
+        }
+
+        /* Interactive Gallery Panel */
+        .gallery-panel{justify-content:center;align-items:center}
+        .flip-card-container{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;cursor:pointer}.exploding-grid{--grid-gap:16px;--grid-size:3;width:clamp(300px,50vw,500px);aspect-ratio:1;display:grid;grid-template-columns:1fr;grid-template-rows:1fr;transition:all .5s ease}.exploding-grid.is-exploded{width:clamp(400px,90vw,900px);aspect-ratio:3/2;grid-template-columns:repeat(var(--grid-size),1fr);grid-template-rows:repeat(var(--grid-size),1fr);gap:var(--grid-gap)}.exploding-grid-item{grid-area:1 / 1;border-radius:16px;overflow:hidden;opacity:0}.exploding-grid-item:first-child{opacity:1;z-index:2}.exploding-grid.is-exploded .exploding-grid-item{grid-area:auto;opacity:1}.exploding-grid-item :global(img){width:100%;height:100%;object-fit:cover}.click-cue{font-family:var(--font-mono);font-size:clamp(.8rem,1.2vw,1rem);text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.7);transition:opacity .4s ease}
+
+        /* --- Bio & Other Section Styles --- */
+        .about-content{background-color:#0a0a0a;position:relative}.bio-section-container{padding:5rem 5vw 10rem;max-width:1200px;margin:0 auto}.bio-accordion-item{padding:2rem 0;border-bottom:1px solid rgba(255,255,255,.2);cursor:pointer}.bio-accordion-header{display:flex;justify-content:space-between;align-items:center;gap:2rem}.bio-accordion-title{font-family:var(--font-headline);font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;flex-grow:1}.bio-accordion-icon{font-family:var(--font-inconsolata);font-size:1.5rem;transition:transform .5s ease}.bio-accordion-item.is-open .bio-accordion-icon{transform:rotate(45deg)}.bio-accordion-content{overflow:hidden;display:none}.bio-accordion-item.is-open .bio-accordion-content{display:block}.bio-accordion-content-inner{padding:3rem 0 1rem}.bio-image-container{display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem}.bio-image{width:100%;max-width:400px;aspect-ratio:4/5;overflow:hidden}.bio-image :global(img){width:100%;height:100%;object-fit:cover}.bio-image-meta{font-family:var(--font-space-mono);font-size:12px;text-transform:uppercase;writing-mode:vertical-rl;padding:1rem;letter-spacing:.1em;opacity:.6}.bio-image-meta-left{transform:rotate(180deg)}.bio-description{max-width:700px;margin:0 auto;text-align:center}.bio-description p{font-size:clamp(1.2rem,2.5vw,1.7rem);line-height:1.8;opacity:.8;margin-bottom:1rem}.cta-section{padding:10rem 5vw;text-align:center}.cta-section h3{font-family:var(--font-headline);font-size:clamp(2rem,5vw,4.5rem);margin-bottom:2rem}.cta-button{font-family:var(--font-headline);font-size:clamp(2rem,5vw,4.5rem);color:var(--white);text-decoration:none;border:2px solid var(--white);padding:1rem 3rem;border-radius:100px;transition:background-color .3s ease,color .3s ease}.cta-button:hover{background-color:var(--white);color:#0a0a0a}
+    </style>
+</head>
+<body class="about-page-body">
+    <div class="custom-pointer"></div>
+
+    <section class="title-reveal-section" id="hero">
+        <div class="title-container">
+            <div class="hero-main-content">
+                <h1 class="headline-reveal">
+                    <div class="text-bg">
+                        <span>Every</span> <span>brilliant</span> <span>idea</span> <span>needs</span> <span>an</span> <span>audience</span>
+                    </div>
+                    <span>Every</span> <span>brilliant</span> <span>idea</span> <span>needs</span> <span>an</span> <span>audience</span>
+                </h1>
+                <div class="testimonial-container">
+                    <h3 class="testimonial-quote">The best business event in the world.</h3>
+                    <p class="testimonial-author">— LUIS MARTINS, AUTHOR OF "METAVERSED"</p>
+                </div>
+            </div>
+            <div class="logo-marquee-container">
+                <div class="logo-slide">
+                    {marqueeLogos.map(logo => <img src={logo.src} alt="Partner Logo"/>)}
+                </div>
+                <div class="logo-slide">
+                    {marqueeLogos.map(logo => <img src={logo.src} alt="Partner Logo"/>)}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="about-content">
+        <div class="page-container" id="horizontal-scroll-section">
+            <div class="horizontal-container">
+                
+                <section class="panel panel-split">
+                    <div class="editorial-content">
+                        <div class="panel-content">
+                            <div class="chapter" data-reveal>The Method</div>
+                            <h2 class="title" data-reveal>Our events power big ideas, grow communities, and fuel movements.</h2>
+                            <div class="text" data-reveal>
+                                <p>Our expert team orchestrates iconic productions, delivering prestigious and industry-leading events by bringing Pulledin’s method to table. At Pulledin, we distill the essential purpose and filter out the noise. We apply our wealth of experience to assemble formats that have driven events to legendary status. Every single event we produce is built around one central concept; “ideas become actions”</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="editorial-image">
+                        <div class="stylized-image-wrapper">
+                            <Image src={abstractImage1} alt="Abstract representation of clarity" class="parallax" data-speed="0.8" />
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="panel panel-full">
+                     <div class="stylized-image-wrapper">
+                        <Image src={fullBgImage1} alt="Vast, clear landscape" class="panel-full-background parallax" data-speed="0.7"/>
+                    </div>
+                    <div class="panel-full-overlay"></div>
+                    <div class="panel-full-content">
+                        <h2 class="mega-text" data-reveal>Clarity</h2>
+                    </div>
+                </section>
+
+                <section class="panel panel-split">
+                    <div class="editorial-image">
+                        <div class="stylized-image-wrapper">
+                            <Image src={abstractImage2} alt="Abstract representation of technology" class="parallax" data-speed="0.8" />
+                        </div>
+                    </div>
+                    <div class="editorial-content">
+                        <div class="panel-content">
+                            <div class="chapter" data-reveal>The Arsenal</div>
+                            <h2 class="title" data-reveal>We bring serious weapons: XR, AI, filmmaking, and business acumen.</h2>
+                            <div class="text" data-reveal>
+                                <p>We’ve been designing in XR since before the phrase existed and produced the most important global XR events since 2016. We’ve taught executive teams about using AI in business, and speak to global event planners about implementing AI processes in event production. As Co-Presidents of the Applied AI Association (Toronto), we are lifetime learners that repeatedly achieve results in evolving eras.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel gallery-panel">
+                    <div class="flip-card-container" id="flip-container">
+                        <div class="exploding-grid">
+                            {gridImages.map((imgSrc, index) => (
+                                <div class="exploding-grid-item">
+                                    <Image src={imgSrc} alt={`Grid image ${index + 1}`} />
+                                </div>
+                            ))}
+                        </div>
+                        <div class="click-cue">
+                            <span>View Our Work</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel video-panel">
+                    <div class="video-wrapper" data-reveal>
+                        <iframe 
+                            src="https://www.youtube.com/embed/t3iyIgLGeOw" 
+                            title="Immerse Global Summit: Testimonials from Participants" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                
+                <section class="panel partners-panel">
+                     <div class="panel-content">
+                        <div class="chapter" data-reveal>In Good Company</div>
+                        <h2 class="title" data-reveal>You are in good company. We've spent our careers producing with some of the world's most innovative organizations.</h2>
+                    </div>
+                    <div class="partner-marquee" data-reveal>
+                        <div class="partner-marquee-content">
+                            {marqueeLogos.map(logo => <img src={logo.src} alt="Partner Logo"/>)}
+                            {marqueeLogos.map(logo => <img src={logo.src} alt="Partner Logo"/>)}
+                        </div>
+                    </div>
+                </section>
+
+                 <section class="panel panel-full">
+                     <div class="stylized-image-wrapper">
+                        <Image src={abstractImage2} alt="Expanding pattern" class="panel-full-background parallax" data-speed="0.7"/>
+                    </div>
+                    <div class="panel-full-overlay"></div>
+                    <div class="panel-full-content">
+                        <h2 class="mega-text" data-reveal>Growth</h2>
+                    </div>
+                </section>
+
+                <section class="panel panel-split">
+                    <div class="editorial-content">
+                        <div class="panel-content">
+                            <div class="chapter" data-reveal>The Collaboration</div>
+                            <h2 class="title" data-reveal>Our first question: “what is the desired outcome?”</h2>
+                            <div class="text" data-reveal>
+                                <p>We start with purpose. We don’t start building anything until we understand why we are building it. Don’t let that scare you! It doesn’t mean more costs — it means better results. Success is in the details. We are hyper-adaptable and that’s because we don’t try to scale anything until the formula is right.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="editorial-image">
+                        <div class="stylized-image-wrapper">
+                            <Image src={tedImage} alt="Audience at a large event" class="parallax" data-speed="0.8"/>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="bio-section-container">
+             <div class="bio-accordion-item">
+                <div class="bio-accordion-header">
+                    <span class="bio-accordion-title">About Anne-Marie Enns</span>
+                    <span class="bio-accordion-icon">+</span>
+                </div>
+                <div class="bio-accordion-content">
+                    <div class="bio-accordion-content-inner">
+                        <div class="bio-image-meta bio-image-meta-left"><span>Anne-Marie Enns</span></div>
+                        <div class="bio-image-container">
+                            <div class="bio-image"><Image src={anneMariePortrait} alt="Portrait of Anne-marie Enns" /></div>
+                        </div>
+                        <div class="bio-image-meta"><span>Pulledin</span></div>
+                    </div>
+                    <div class="bio-description">
+                        <p>Anne-Marie is an award-winning Executive Producer who lives to shape an event's soul. With a career built on producing world-class experiences for organizations like TED Conferences and the VR/AR Association, her specialty is transforming a core vision into a living, breathing narrative. A passionate advocate for immersive technologies and a mentor dedicated to upskilling women in tech, Anne-marie is the strategic force that ensures every event is not just managed, but masterfully crafted.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bio-accordion-item">
+                <div class="bio-accordion-header">
+                    <span class="bio-accordion-title">About Cameron Kootz</span>
+                    <span class="bio-accordion-icon">+</span>
+                </div>
+                <div class="bio-accordion-content">
+                    <div class="bio-accordion-content-inner">
+                        <div class="bio-image-meta bio-image-meta-left"><span>Cameron Kootz</span></div>
+                        <div class="bio-image-container">
+                             <div class="bio-image"><Image src={cameronPortrait} alt="Portrait of Cameron Kootz" /></div>
+                        </div>
+                        <div class="bio-image-meta"><span>Pulledin</span></div>
+                    </div>
+                    <div class="bio-description">
+                        <p>Cameron is a producer and technologist who sees events as ecosystems. His focus is on building communities and forging the strategic partnerships that turn a great event into an industry-defining moment. As the Co-President of the Applied AI Association's Toronto Chapter, he is deeply embedded in the world of emerging tech and designs the innovative formats that drive conversation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bio-accordion-item">
+                <div class="bio-accordion-header">
+                    <span class="bio-accordion-title">Life Outside of Events</span>
+                    <span class="bio-accordion-icon">+</span>
+                </div>
+                <div class="bio-accordion-content">
+                    <div class="bio-accordion-content-inner">
+                        <div class="bio-image-meta bio-image-meta-left"><span>Lucian Enns</span></div>
+                        <div class="bio-image-container">
+                            <div class="bio-image"><Image src={lucianPortrait} alt="Portrait of Lucian Enns" /></div>
+                        </div>
+                        <div class="bio-image-meta"><span>Pulledin</span></div>
+                    </div>
+                    <div class="bio-description">
+                        <p>When we’re not producing events, our focus is on our family. We are the proud parents of our son, Lucian Enns, a high-achieving athlete on Canada's National Tennis Team. Watching his dedication to excellence inspires us every day and reminds us of the commitment it takes to compete—and win—at the highest level.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h3>Ready to build something real?</h3>
+            <a href="/contact/" class="cta-button">Let's Connect</a>
+        </section>
+    </div>
+    
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined') { return; }
+            gsap.registerPlugin(ScrollTrigger, Flip);
+
+            // --- Pointer and Title Reveal Animations ---
+            const pointer = document.querySelector('.custom-pointer');
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(pointer, { x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power1.out' });
+            });
+            const hero = document.querySelector('#hero');
+            if (hero) {
+                const titleContainer = hero.querySelector('.title-container');
+                const headline = hero.querySelector('.headline-reveal');
+                const logoMarquee = hero.querySelector('.logo-marquee-container');
+                const testimonial = hero.querySelector('.testimonial-container');
+                
+                const tlOpen = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: 'top top',
+                        end: '+=1500',
+                        scrub: 1,
+                        pin: true
+                    }
+                });
+                
+                tlOpen.to(headline.querySelectorAll('span'), { 'clip-path': 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', stagger: 0.05, ease: 'power2.out' }, 0);
+                tlOpen.to(logoMarquee, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.5);
+                tlOpen.to(logoMarquee, { autoAlpha: 0, y: 50, duration: 0.5 }, 1.5);
+                tlOpen.to(headline, { autoAlpha: 0, duration: 0.5 }, 1.7);
+                tlOpen.to(testimonial, { autoAlpha: 1, duration: 0.5 }, 2);
+            }
+
+            // --- Robust Horizontal Scroll ---
+            const horizontalSection = document.querySelector("#horizontal-scroll-section");
+            const horizontalContainer = document.querySelector(".horizontal-container");
+            if (horizontalSection && horizontalContainer) {
+                const getScrollAmount = () => -(horizontalContainer.scrollWidth - window.innerWidth);
+                
+                const tween = gsap.to(horizontalContainer, {
+                    x: getScrollAmount,
+                    ease: "none",
+                });
+
+                ScrollTrigger.create({
+                    trigger: horizontalSection,
+                    pin: true,
+                    scrub: 1,
+                    start: "top top",
+                    end: () => `+=${-getScrollAmount()}`,
+                    animation: tween,
+                    invalidateOnRefresh: true,
+                });
+
+                const panels = gsap.utils.toArray(".panel");
+                panels.forEach(panel => {
+                    const parallaxImage = panel.querySelector(".parallax");
+                    if (parallaxImage) {
+                        const speed = parallaxImage.dataset.speed || 0.5;
+                        gsap.to(parallaxImage, {
+                            x: () => (panel.offsetWidth - parallaxImage.offsetWidth) * speed * 0.5,
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: panel,
+                                containerAnimation: tween,
+                                start: "left right",
+                                end: "right left",
+                                scrub: true,
+                            }
+                        });
+                    }
+                    const revealElements = panel.querySelectorAll("[data-reveal]");
+                    if (revealElements.length > 0) {
+                         gsap.from(revealElements, {
+                            y: 50,
+                            opacity: 0,
+                            stagger: 0.1,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: panel,
+                                containerAnimation: tween,
+                                start: "left 75%",
+                                toggleActions: "play resume resume reverse",
+                            }
+                        });
+                    }
+                });
+            }
+
+            // --- CLICK-BASED FLIP ANIMATION ---
+            const flipContainer = document.querySelector("#flip-container");
+            if (flipContainer) {
+                const grid = flipContainer.querySelector(".exploding-grid");
+                const gridItems = flipContainer.querySelectorAll(".exploding-grid-item");
+                const clickCue = flipContainer.querySelector(".click-cue");
+                flipContainer.addEventListener('click', () => {
+                    if (Flip.isFlipping(gridItems)) return;
+                    const state = Flip.getState(gridItems);
+                    grid.classList.toggle('is-exploded');
+                    Flip.from(state, {
+                        duration: 1.2,
+                        ease: "elastic.out(1, 0.7)",
+                        stagger: 0.05,
+                        scale: true
+                    });
+                    gsap.to(clickCue, { 
+                        opacity: grid.classList.contains('is-exploded') ? 0 : 1, 
+                        duration: 0.5 
+                    });
+                });
+            }
+
+            // --- Bio Accordion Animation ---
+            const bioItems = gsap.utils.toArray('.bio-accordion-item');
+            if (bioItems.length > 0) {
+                bioItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const state = Flip.getState(bioItems);
+                        const isOpen = item.classList.contains('is-open');
+                        if (isOpen) {
+                            item.classList.remove('is-open');
+                        } else {
+                            bioItems.forEach(i => i.classList.remove('is-open'));
+                            item.classList.add('is-open');
+                        }
+                        Flip.from(state, {
+                            duration: 0.8,
+                            ease: "elastic.out(1, 0.75)",
+                            onComplete: () => ScrollTrigger.refresh()
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

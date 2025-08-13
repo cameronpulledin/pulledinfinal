@@ -1,0 +1,264 @@
+---
+seoTitle: "VR/AR Global Summit 2019 - Vancouver | Pulledin"
+seoDescription: "As Executive Producers for the VR/AR Global Summit in Vancouver, we grew the event to 2,600 attendees and orchestrated a program featuring 225 speakers."
+socialImage: "../../assets/images/socialImages/vrargs2019-socialImage.jpg" # Placeholder: Create a 1200x630px social image and update this path.
+eventName: "VR/AR Global Summit - Vancouver"
+eventDate: 2019-11-01
+eventYear: "2019"
+eventJobs:
+  - "Executive Producers"
+  - "Marketing"
+  - "Stage Production"
+  - "Partnerships"
+  - "Lead Curation and Programming"
+  - "Logistics Management"
+eventFormats:
+  - "Conference"
+  - "Expo"
+  - "B2B"
+  - "Networking sessions"
+  - "Live Event"
+  - "Workshops"
+eventFeaturedMedia:
+  type: 'youtube'
+  videoId: 'FDA0vYYl0NY'
+  alt: 'VR/AR Global Summit Highlight 2019'
+eventGallery:
+  - { type: 'youtube', videoId: 'FDA0vYYl0NY', title: 'VRAR Summit Highlight 2019' }
+  - { type: 'youtube', videoId: 'mTEPH_u38LE', title: 'VR/AR Global Summit 2019 - MasterCard' }
+  - { type: 'youtube', videoId: '34bnzyzJ6CA', title: 'VR/AR Global Summit 2019 - Viacom' }
+  - { type: 'youtube', videoId: 'sNYrEBmP8gM', title: 'VR/AR Global Summit 2019 - Intel Sports & Travancore' }
+  - { type: 'youtube', videoId: 'nbYhuTVLNDo', title: 'VR/AR Global Summit 2019 - Stanford Health Children’s Hospital' }
+  - { type: 'youtube', videoId: 'cOnnOYWkgo8', title: 'VR/AR Global Summit 2019 - Panel with Atheer, Telus, Julabo' }
+  - { type: 'youtube', videoId: '0vqnuSWlqyk', title: 'VR/AR Global Summit Background Loop v2' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-8.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-9.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-10.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-4.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-11.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-15.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-16.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-17.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-18.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-5.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-12.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-19.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-22.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-23.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-20.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-27.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-7.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-14.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-21.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-28.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-33.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-34.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-35.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-36.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-37.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-38.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-39.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-40.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-41.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-42.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-43.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-44.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-48.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-49.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-50.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-56.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-57.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-58.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-59.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-60.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-61.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-62.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-63.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-64.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-65.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-66.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-67.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-68.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-69.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-70.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-71.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-72.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-73.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-74.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-75.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-76.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-77.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-78.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-79.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-80.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-81.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-82.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-83.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-84.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-85.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-86.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-87.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-88.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-89.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-90.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-91.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-92.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-93.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-94.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-95.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-96.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-97.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-98.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-99.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-100.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-101.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-102.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-103.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-104.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-105.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-106.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-107.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-108.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-109.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-110.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-111.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-112.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-113.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-114.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-115.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-116.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-117.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-118.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-119.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-120.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-121.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-122.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-123.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-124.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-125.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-126.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-127.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-128.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-129.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-130.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-131.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay1-132.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-1.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-2.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-3.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-4.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-8.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-9.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-10.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-11.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-5.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-12.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-15.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-16.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-17.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-18.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-19.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-6.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-13.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-20.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-22.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-23.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-24.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-25.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-26.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-27.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-29.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-30.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-31.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-32.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-33.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-34.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-36.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-37.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-38.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-39.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-40.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-41.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-43.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-44.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-45.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-46.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-47.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-48.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-50.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-51.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-52.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-53.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-54.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-55.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-57.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-58.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-59.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-60.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-61.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-62.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-64.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-65.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-66.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-67.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-68.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-69.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-71.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-72.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-73.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-74.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-75.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-76.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-78.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-79.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-80.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-81.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-82.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-83.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-7.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-14.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-21.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-28.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-35.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-42.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-49.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-56.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-63.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-70.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/VRARDay2-77.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_1126.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_1839.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2597.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3500.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3858.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3861.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3906.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3939.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2922.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2934.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2974.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2979.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2989.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2879.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2880.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2892.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2913.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2951.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_2968.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3032.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3050.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3057.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3053.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3127.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3104.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3087.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3071.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3020.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3142.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3148.jpg', title: 'VR/AR Global Summit 2019' }
+  - { type: 'image', src: '../../assets/images/Events/vrargs2019/IMG_3049.jpg', title: 'VR/AR Global Summit 2019' }
+---
+
+Building significantly on the momentum of the previous year, the VR/AR Global Summit in Vancouver in 2019 returned to the Parq Vancouver, solidifying its position as a premier in-person gathering for the immersive technology industry. As Executive Producers, we oversaw the growth of the event to 2,600 attendees and orchestrated a program featuring 225 speakers.
+
+The summit delivered a robust conference, vibrant expo exhibits, and crucial networking sessions, all designed to foster connections and drive the industry forward. We were actively on track to grow to over 6,000 attendees by year three, demonstrating our consistent growth trajectory and ambition.

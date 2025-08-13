@@ -1,0 +1,164 @@
+---
+// src/pages/journal/[slug].astro
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('journal', ({ data }) => {
+    return data.postType === 'internal';
+  });
+  return allPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'journal'>; }
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, date, author, mediaSrc } = post.data;
+---
+
+<Layout 
+    title={title} 
+    metaDescription={`A journal entry by ${author} titled "${title}".`}
+    ogImage={mediaSrc?.src}
+>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <main class="post-content">
+        <article>
+            <header class="post-header">
+                <p class="post-meta">
+                    <span>{date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                    <span class="separator">/</span>
+                    <span>By {author}</span>
+                </p>
+                <h1 class="post-title">{title}</h1>
+            </header>
+
+            {mediaSrc && (
+                <div class="featured-image">
+                    <Image 
+                        src={mediaSrc} 
+                        alt={`Featured image for ${title}`} 
+                        sizes="100vw" 
+                    />
+                </div>
+            )}
+            <div class="post-body">
+                <Content />
+            </div>
+        </article>
+    </main>
+
+    <style>
+        .post-content {
+            padding: 10rem 5vw 5rem; 
+            margin: 0 auto;
+        }
+        .post-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .featured-image {
+            margin-bottom: 5rem;
+            border-radius: 24px; 
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .featured-image :global(img) {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .post-title {
+            font-family: 'Syne', var(--font-headline);
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 800;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+        }
+        .post-meta {
+            font-family: var(--font-space-mono);
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.7;
+        }
+        .post-meta .separator {
+            margin: 0 0.75em;
+        }
+        
+        .post-body {
+            font-family: 'Inter', var(--font-body);
+            line-height: 1.8;
+            max-width: 150ch;
+            margin: 0 auto;
+        }
+        
+        .post-body :global(h1) {
+            font-family: 'Syne', var(--font-headline);
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 4rem 0 2rem;
+            text-transform: uppercase;
+        }
+
+        .post-body :global(h2) {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin: 4rem 0 2rem;
+        }
+        
+        .post-body :global(h3) {
+            font-family: var(--font-headline);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 3rem 0 1rem;
+        }
+
+        .post-body :global(blockquote) {
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 5px solid var(--primary);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-family: 'Syne', var(--font-headline);
+            font-style: italic;
+            opacity: 0.85;
+        }
+
+        .post-body :global(blockquote ul) {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-family: 'Inter', var(--font-body);
+            font-style: normal;
+            margin-top: 1rem;
+        }
+        
+        .post-body :global(p) {
+            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+            margin-bottom: 1.75rem;
+        }
+        .post-body :global(ul) {
+            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+            margin-bottom: 1.75rem;
+            padding-left: 2rem;
+        }
+        .post-body :global(a) {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .post-body :global(a:hover) {
+            text-decoration: none;
+        }
+    </style>
+</Layout>

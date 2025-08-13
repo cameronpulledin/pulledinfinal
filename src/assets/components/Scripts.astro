@@ -1,0 +1,60 @@
+---
+---
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+<script is:inline src="https://www.youtube.com/iframe_api"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap-drawsvg@1.0.0/drawsvgmin.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof gsap === 'undefined') { return; }
+        gsap.registerPlugin(ScrollTrigger, Draggable, Flip, MorphSVGPlugin);
+
+        // --- GLOBAL LOGIC ---
+        const mainContent = document.querySelector('main');
+        const loader = document.getElementById('loader');
+        const loaderLogo = document.getElementById('loader-logo');
+        const pageTransitionOverlay = document.getElementById('page-transition-overlay');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn');
+        
+        const tagline = document.querySelector('.site-tagline h1');
+        if (tagline) {
+            const text = tagline.textContent;
+            tagline.innerHTML = text.split(' ').map(word => `<span class="word"><span>${word}</span></span>`).join(' ');
+        }
+
+        function loaderAnimation() {
+            // ... (your existing loader animation logic)
+        }
+        
+        gsap.delayedCall(0.05, loaderAnimation);
+
+        function pageTransition(targetUrl) {
+            // ... (your existing page transition logic)
+        }
+
+        document.body.addEventListener('click', (e) => {
+            const target = e.target.closest('a');
+            if (target && target.href && !target.target && !target.classList.contains('no-transition') && new URL(target.href, window.location.origin).origin === window.location.origin) {
+                if (target.pathname === window.location.pathname && target.hash) return;
+                e.preventDefault();
+                pageTransition(target.href);
+            }
+        });
+
+        // --- ROBUST MENU LOGIC ---
+        let menuTimeline;
+        if (menuToggleBtn) {
+            // ... (your existing menu logic)
+        }
+        
+        // --- ABOUT OVERLAY & CANVAS LOGIC ---
+        const learnMoreLink = document.querySelector('.learn-more-link');
+        if (learnMoreLink) {
+             // ... (your existing about overlay logic)
+        }
+    });
+</script>

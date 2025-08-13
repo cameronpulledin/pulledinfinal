@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap'); /* Inconsolata font */
+
+
+:root {
+  --primary: #1a1a1a; /* Dark almost black */
+  --background: #F0EAD6; /* Eggshell color */
+  --card-bg: #E0E0C0; /* A slightly darker eggshell for card backgrounds */
+  --light-gray-border: #d0d0d0; /* Light gray for borders */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Fluorescent Colors (kept for accents) */
+  --neon-green: #39FF14;
+  --neon-red: #FF3131;
+
+  --font-body: 'Archivo', sans-serif;
+  --font-headline: 'Archivo Black', sans-serif;
+  --font-inconsolata: 'Inconsolata', monospace; /* New font variable */
+}
+
+/* Basic HTML & Body Reset */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow from layout shifts, crucial for sliding overlays */
+}
+
+/* Smooth Scroll Wrapper (Essential for GSAP ScrollSmoother) */
+#smooth-wrapper, #smooth-content {
+    height: 100%;
+    overflow: hidden; /* Smoother will manage scroll */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: var(--font-body);
+    color: var(--primary);
+    background-color: var(--background);
+    font-size: 16px; /* Base font size set here */
+}
+
+
+/*
+================================
+HEADER & FULLSCREEN MENU STYLES (Retained)
+================================
+*/
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1001; /* High z-index to be above everything */
+    color: var(--primary);
+}
+.header-logo {
+    display: flex;
+    cursor: pointer;
+}
+.logo-year-wrapper {
+    position: relative;
+    width: 60px;
+    margin-left: 0.5rem;
+}
+.logo-year {
+    position: absolute;
+    left: 0;
+    transition: opacity 0.4s ease;
+}
+.logo-year--hover {
+    opacity: 0;
+}
+.header-logo:hover .logo-year--default {
+    opacity: 0;
+}
+.header-logo:hover .logo-year--hover {
+    opacity: 1;
+}
+.header-menu-toggle {
+    cursor: pointer;
+}
+
+.fullscreen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--card-bg); /* Use a light background for the menu */
+    color: var(--primary);
+    z-index: 1000; /* Below header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+}
+.menu-nav ul {
+    list-style: none;
+    text-align: center;
+}
+.menu-nav li {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    overflow: hidden; /* For the link slide-in animation */
+    padding: 0.5rem;
+}
+.menu-nav a {
+    color: var(--primary);
+    text-decoration: none;
+    display: inline-block; /* Essential for yPercent animation */
+}
+.menu-footer {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/*
+================================
+SITE TAGLINE STYLES (Retained)
+================================
+*/
+.site-tagline {
+    position: fixed;
+    top: 60px; /* Space from top for the header */
+    left: 2rem;
+    width: 100px;
+    font-weight: bold;
+    font-size: 0.7em;
+    color: var(--primary);
+    line-height: 1.3;
+    z-index: 1000; /* Above content, below header/menu */
+    padding: 0;
+    margin: 0;
+}
+
+/*
+================================
+EVENT GALLERY STYLES (Retained)
+================================
+*/
+.event-gallery-section {
+    height: 100vh; /* Take full viewport height */
+    position: fixed; /* Positioning context */
+    bottom:0px;
+    display: flex;
+    align-items: center; /* Vertically center the gallery */
+    justify-content: center; /* Horizontally center the gallery initially */
+    padding-top: 100px; /* Whitespace from top for header */
+    padding-bottom: 80px; /* Whitespace from bottom for potential future menu */
+    box-sizing: border-box; /* Include padding in height calculation */
+    overflow: hidden; /* Hide anything outside */
+}
+
+.gallery-container {
+    width: 100vw; /* Take full viewport width */
+    height: 350px; /* Fixed height for the event panels */
+    overflow: hidden; /* Hide panels outside the view */
+    position: relative;
+    display: flex; /* Helps in layout */
+    align-items: center; /* Vertically center the gallery-wrapper */
+}
+
+.gallery-wrapper {
+    display: flex; /* Essential for horizontal layout of panels */
+    height: 100%;
+    position: relative; /* Controlled by Draggable for X transform */
+    will-change: transform; /* Optimize for GSAP transforms */
+    cursor: grab; /* Cursor for dragging */
+}
+
+.gallery-wrapper.is-dragging {
+    cursor: grabbing;
+}
+
+.event-panel {
+    width: 250px; /* Fixed width for larger screens */
+    height: 200px; /* Fixed height */
+    flex-shrink: 0; /* Prevent panels from shrinking */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out title, image, year */
+    border: 1px solid var(--black); /* Thin black border around the whole div */
+    background-color: transparent; /* Transparent background initially */
+    color: var(--black); /* Black text initially */
+    padding: 0px; /* Inner padding */
+    text-align: left;
+    overflow: hidden; /* Hide overflow of content if it goes beyond */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* For hover effect - removed transform */
+}
+
+/* Adding 1em (16px) margin between event panels */
+.event-panel + .event-panel {
+    margin-left: 0em; /* 1em = 16px, creating the gap */
+}
+
+/* Hover effect - no scaling */
+.event-panel:hover {
+    background-color: var(--white); /* Background tweens to white */
+    color: var(--black); /* Text stays black */
+}
+
+.event-panel-title-wrapper {
+    /*border: 1px solid var(--black);  Thin border around title */
+    padding: 5px;
+    margin-bottom: 10px; /* Space between title and image */
+    font-family: var(--font-inconsolata);
+    font-weight: 500;
+    font-size: 12px; /* Set directly here */
+    line-height: 1.2;
+}
+
+.event-panel-image-wrapper {
+    flex-grow: 1; /* Allows image to take up remaining space */
+    display: flex; /* To center image vertically if needed */
+    justify-content: center;
+    align-items: center;
+    
+    overflow: hidden; /* Ensures image doesn't overflow its container */
+    margin-bottom: 10px; /* Space between image and year */
+}
+
+.event-panel-image {
+    width: 100%; /* Image fills its wrapper */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 1 / 1; /* 1:1 aspect ratio for the image itself */
+    object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+    display: block;
+}
+
+.event-panel-year {
+    
+    padding: 5px;
+    font-family: var(--font-inconsolata);
+    font-weight: 500;
+    font-size: 12px; /* Set directly here */
+    line-height: 1.2;
+}
+
+/* Event Link Button within the panel */
+.event-link-button-panel {
+    display: block; /* Make it a block element */
+    width: 100%;
+    text-align: center;
+    padding: 8px 10px;
+    margin-top: 10px; /* Space above button */
+    background-color: var(--black); /* Black background */
+    color: var(--white); /* White text */
+    text-decoration: none;
+    font-family: var(--font-inconsolata);
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid var(--black); /* Border matching theme */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.event-link-button-panel:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+
+/*
+================================
+NEW PAGE TRANSITION OVERLAY STYLES
+(Replaces old event-detail-overlay)
+================================
+*/
+#page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary); /* Solid color to cover content */
+    z-index: 9998; /* High z-index, but below header/menu (1001) */
+    transform: translateX(-100%); /* Start completely off-screen to the left */
+    visibility: hidden; /* Hidden by default */
+    pointer-events: none; /* Allows clicks to pass through when not active */
+}
+
+
+/*
+================================
+RESPONSIVE ADJUSTMENTS (Retained)
+================================
+*/
+@media (max-width: 768px) {
+    .site-header {
+        padding: 1rem 1.5rem;
+    }
+
+    .site-tagline {
+        top: 50px; /* Adjust for smaller header on mobile */
+        left: 1.5rem;
+        font-size: 0.6em;
+        width: 80px; /* Slightly smaller for mobile */
+    }
+
+    /* Event panels become full width on small screens */
+    .event-panel {
+        /* Adjusted width for mobile: 100vw - (2 * 1em for horizontal padding on body + 2 * 10px inner padding + 2 * 1px border) */
+        /* Simplified for responsiveness, ensuring margins are consistent */
+        width: calc(100vw - (2 * 0.5em + 20px)); /* Example: 100vw - 1em total margin between elements + 20px padding from container + 2px border */
+        height: 300px; /* Adjust height for mobile */
+        margin-left: 0.5em; /* Maintain responsive margins to match desktop em */
+        margin-right: 0.5em; /* Maintain responsive margins */
+    }
+    .event-panel + .event-panel {
+        margin-left: 1em; /* Ensure responsive margins are consistent, still 1em gap */
+    }
+
+
+    .event-panel-title-wrapper, .event-panel-year {
+        font-size: 16px; /* Slightly smaller font for mobile */
+    }
+}
