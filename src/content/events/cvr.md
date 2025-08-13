@@ -41,7 +41,7 @@ eventGallery:
     src: '../../assets/images/Events/CVR/7.jpg'
     title: 'CVR Vancouver 2017'
   - type: 'image'
-    src: '../../assets/images/Events/CVR/CVR2017-2.jpg'
+    src: '../../assets/images/Events/CVR/cvr2017-2.jpg'
     title: 'Panel Discussion'
   - type: 'image'
     src: '../../assets/images/Events/CVR/cvr2017-1.jpg'
