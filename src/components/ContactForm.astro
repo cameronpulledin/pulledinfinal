@@ -1,7 +1,7 @@
 ---
 // This component contains the contact form, particle background, and all associated animations.
-// This version is configured for a JavaScript-based (AJAX) submission to Netlify
-// and includes SVG email obfuscation.
+// This version is configured for a JavaScript-based (AJAX) submission to Netlify,
+// includes email obfuscation, and all spam protection features.
 ---
 
 <style>
@@ -94,11 +94,13 @@
         }
     }
     .email-svg-object {
-        height: 23px; /* Corresponds to 1.2rem font size */
-        vertical-align: middle; /* Aligns it nicely with text */
+        height: 23px;
+        vertical-align: middle;
         margin-top: -5px;
     }
-    .hidden {display: none;}
+    .hidden {
+        display: none;
+    }
 </style>
 
 <canvas id="particle-canvas"></canvas>
@@ -120,15 +122,15 @@
             </div>
         </div>
         <div class="contact-form-container">
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
                 <input type="hidden" name="form-name" value="contact" />
                 <p class="hidden">
                     <label>
-                    Don’t fill this out if you’re human: <input name="bot-field" />
+                      Don’t fill this out if you’re human: <input name="bot-field" />
                     </label>
                 </p>
                 <div class="form-group">
-                    <input type="text" id="name" name="name" class="form-input" netlify-honeypot="bot-field" data-netlify-recaptcha="true" placeholder=" " required>
+                    <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
                     <label for="name" class="form-label">Your Name</label>
                 </div>
                 <div class="form-group">
@@ -142,7 +144,6 @@
                 <div data-netlify-recaptcha="true"></div>
             </form>
             <div id="send-button-wrapper">
-
                 <button type="button" id="send-button">Send</button>
             </div>
             <div id="form-status"></div>
@@ -153,6 +154,7 @@
 <script is:inline>
     // This script handles BOTH the animations AND the custom Netlify form submission
     document.addEventListener('DOMContentLoaded', function () {
+        // ... (The entire, correct JavaScript is preserved below)
         const particleCanvas = document.getElementById('particle-canvas');
         if (particleCanvas) {
             const ctx = particleCanvas.getContext('2d');
