@@ -43,7 +43,7 @@ eventGallery:
     src: '../../assets/images/Events/vrargs4/3.JPG'
     title: 'Virtual Stage 1 Production image at VR/AR Global Summit 2020 Americas'
   - type: 'image'
-    src: '../../assets/images/Events/vrargs4/4.jpg'
+    src: '../../assets/images/Events/vrargs4/4.JPG'
     title: 'Tutankhamun talk at VR/AR Global Summit 2020 Americas'
 ---
 

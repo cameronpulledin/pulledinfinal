@@ -1,22 +1,28 @@
 ---
 // This is the final, complete, standalone "About" page with all features integrated.
 import { Image } from 'astro:assets';
+// Add this line with your other imports
+import ScrollIcon from '../components/scrollIcon.astro';
 
 // Local assets
 import toolsImage from '../assets/images/Events/sxd/tools-image.png';
 import tedImage from '../assets/images/Events/ted30/12.jpg';
 import anneMariePortrait from '../assets/images/team/anne-marie-enns.jpg';
 import lucianPortrait from '../assets/images/team/7.jpg';
-import cameronPortrait from '../assets/images/team/cameron-kootz.jpg';
-import abstractImage1 from '../assets/images/abstract/abstract-1.png';
-import abstractImage2 from '../assets/images/abstract/abstract-2.png';
-import fullBgImage1 from '../assets/images/abstract/full-bg-1.png';
-import fullBgImage2 from '../assets/images/abstract/full-bg-2.png';
+import cameronPortrait from '../assets/images/team/cameron-profile.jpg';
+import cameronTour from '../assets/images/team/cameron-kootz.jpg';
+import candy from '../assets/images/team/candy.jpg';
+import abstractImage1 from '../assets/images/abstract/abstract-1.jpg';
+import abstractImage2 from '../assets/images/abstract/abstract-2.jpg';
+import fullBgImage1 from '../assets/images/abstract/full-bg-1.jpg';
+import fullBgImage2 from '../assets/images/abstract/full-bg-2.jpg';
 import ex1 from "../assets/images/Events/servicesgallery/lb1.jpg"
 import ex2 from "../assets/images/Events/servicesgallery/igs-group1.jpg"
 import ex3 from "../assets/images/Events/servicesgallery/Anne-marie-IGS-stage.jpeg"
 import ex4 from "../assets/images/Events/servicesgallery/9.jpg"
 import ex5 from "../assets/images/Events/servicesgallery/bse-2004.jpg"
+import ex6 from "../assets/images/Events/servicesgallery/timoniSquare.jpg"
+import furness from "../assets/images/team/"
 
 // Importing all partner logos from src/assets/
 import accentureLogo from '../assets/images/corplogos25/svg/white/accenture-white.svg';
@@ -51,8 +57,8 @@ import wayfairLogo from '../assets/images/corplogos25/svg/white/Wayfair_2024_log
 // Array of images for the click-to-expand grid
 const gridImages = [
     ex1, ex2, ex5,
-    ex3, lucianPortrait, tedImage,
-    ex4, cameronPortrait, anneMariePortrait
+    ex3, candy, tedImage,
+    ex4, cameronTour, anneMariePortrait
 ];
 
 // Array for the partner marquee
@@ -272,11 +278,39 @@ const marqueeLogos = [
 
         /* --- Bio & Other Section Styles --- */
         .about-content{background-color:#0a0a0a;position:relative}.bio-section-container{padding:5rem 5vw 10rem;max-width:1200px;margin:0 auto}.bio-accordion-item{padding:2rem 0;border-bottom:1px solid rgba(255,255,255,.2);cursor:pointer}.bio-accordion-header{display:flex;justify-content:space-between;align-items:center;gap:2rem}.bio-accordion-title{font-family:var(--font-headline);font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;flex-grow:1}.bio-accordion-icon{font-family:var(--font-inconsolata);font-size:1.5rem;transition:transform .5s ease}.bio-accordion-item.is-open .bio-accordion-icon{transform:rotate(45deg)}.bio-accordion-content{overflow:hidden;display:none}.bio-accordion-item.is-open .bio-accordion-content{display:block}.bio-accordion-content-inner{padding:3rem 0 1rem}.bio-image-container{display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem}.bio-image{width:100%;max-width:400px;aspect-ratio:4/5;overflow:hidden}.bio-image :global(img){width:100%;height:100%;object-fit:cover}.bio-image-meta{font-family:var(--font-space-mono);font-size:12px;text-transform:uppercase;writing-mode:vertical-rl;padding:1rem;letter-spacing:.1em;opacity:.6}.bio-image-meta-left{transform:rotate(180deg)}.bio-description{max-width:700px;margin:0 auto;text-align:center}.bio-description p{font-size:clamp(1.2rem,2.5vw,1.7rem);line-height:1.8;opacity:.8;margin-bottom:1rem}.cta-section{padding:10rem 5vw;text-align:center}.cta-section h3{font-family:var(--font-headline);font-size:clamp(2rem,5vw,4.5rem);margin-bottom:2rem}.cta-button{font-family:var(--font-headline);font-size:clamp(2rem,5vw,4.5rem);color:var(--white);text-decoration:none;border:2px solid var(--white);padding:1rem 3rem;border-radius:100px;transition:background-color .3s ease,color .3s ease}.cta-button:hover{background-color:var(--white);color:#0a0a0a}
-    </style>
+   
+   /* --- Responsive Adjustments for CTA Button --- */
+    @media (max-width: 768px) {
+        .cta-section {
+            /* Reduces the vertical space on mobile */
+            padding: 5rem 5vw;
+        }
+
+        .cta-button {
+            /* --- NEW RULES FOR MOBILE --- */
+
+            /* Force text to stay on one line */
+            white-space: nowrap; 
+
+            /* Make the button a block to control its width */
+            display: block;
+            width: 90%; /* Make it take up 90% of the screen width */
+            max-width: 400px; /* Prevent it from getting too wide on tablets */
+            margin: 0 auto; /* Center the button */
+            
+            /* Adjust font size for a better fit */
+            font-size: clamp(1rem, 5vw, 2rem);
+            
+            /* Adjust padding for the new block layout */
+            padding: 1rem 1.5rem;
+        }
+    }
+   </style>
 </head>
 <body class="about-page-body">
+    
     <div class="custom-pointer"></div>
-
+<ScrollIcon />
     <section class="title-reveal-section" id="hero">
         <div class="title-container">
             <div class="hero-main-content">
@@ -300,6 +334,12 @@ const marqueeLogos = [
                 </div>
             </div>
         </div>
+          
+    </section>
+
+    <section>
+
+        
     </section>
 
     <div class="about-content">
@@ -463,14 +503,14 @@ const marqueeLogos = [
                 </div>
                 <div class="bio-accordion-content">
                     <div class="bio-accordion-content-inner">
-                        <div class="bio-image-meta bio-image-meta-left"><span>Lucian Enns</span></div>
+                        <div class="bio-image-meta bio-image-meta-left"><span>Real Life</span></div>
                         <div class="bio-image-container">
                             <div class="bio-image"><Image src={lucianPortrait} alt="Portrait of Lucian Enns" /></div>
                         </div>
                         <div class="bio-image-meta"><span>Pulledin</span></div>
                     </div>
                     <div class="bio-description">
-                        <p>When we’re not producing events, our focus is on our family. We are the proud parents of our son, Lucian Enns, a high-achieving athlete on Canada's National Tennis Team. Watching his dedication to excellence inspires us every day and reminds us of the commitment it takes to compete—and win—at the highest level.</p>
+                        <p>When we’re not producing events, we are probably on a tennis court or in a kayak. We are the proud parents of our son, Lucian Enns, a high-achieving athlete on Canada's National Tennis Team. Watching his dedication to excellence inspires us every day and reminds us of the commitment it takes to compete—and win—at the highest level.</p>
                     </div>
                 </div>
             </div>

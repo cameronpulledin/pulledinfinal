@@ -1,7 +1,7 @@
 ---
 seoTitle: "Walk a Mile in Her Shoes | Pulledin"
 seoDescription: "As producers for the Walk a Mile in Her Shoes events in Toronto, we led a vital initiative dedicated to raising funds and awareness to end violence against women."
-socialImage: "../../assets/images/socialImages/WAM-socialImage.jpg" # Placeholder: Create a 1200x630px social image and update this path.
+socialImage: "../../assets/images/socialImages/wam-socialImage.jpg" # Placeholder: Create a 1200x630px social image and update this path.
 eventName: "Walk a Mile in Her Shoes"
 eventDate: 2013-12-31 # Using the end date of the event range as a placeholder.
 eventYear: "2012, 2013"

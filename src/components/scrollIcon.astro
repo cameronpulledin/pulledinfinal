@@ -1,0 +1,78 @@
+---
+// src/components/ScrollIcon.astro
+---
+<div class="scroll-container">
+  <div class="mouse">
+    <div class="scroller"></div>
+  </div>
+  <span class="scroll-text">scroll</span>
+</div>
+
+<script>
+  // This script runs on the client to handle the fade effect
+  document.addEventListener('astro:page-load', () => {
+    const scrollIcon = document.querySelector('.scroll-container');
+
+    if (scrollIcon) {
+      window.addEventListener('scroll', () => {
+        // If scrolled more than 50px from the top, fade out. Otherwise, fade in.
+        if (window.scrollY > 50) {
+          scrollIcon.style.opacity = '0';
+        } else {
+          scrollIcon.style.opacity = '1';
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .scroll-container {
+    display: flex;
+    margin-top: 5vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* Add a transition for a smooth fade effect */
+    transition: opacity 0.3s ease-in-out; 
+  }
+  .scroll-text {
+    font-size: 0.8rem;
+    color: #666; 
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .mouse {
+    width: 25px;
+    height: 40px;
+    border: 2px solid #666; 
+    border-radius: 60px;
+    position: relative;
+  }
+  .scroller {
+    width: 4px;
+    height: 10px;
+    border-radius: 25%;
+    background-color: #666; 
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-animation 2s infinite;
+  }
+
+  @keyframes scroll-animation {
+    0% {
+      opacity: 1;
+      top: 8px;
+    }
+    50% {
+      opacity: 1;
+      top: 18px;
+    }
+    100% {
+      opacity: 0;
+      top: 28px;
+    }
+  }
+</style>
