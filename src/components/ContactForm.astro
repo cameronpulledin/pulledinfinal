@@ -1,173 +1,102 @@
 ---
 // This component contains the contact form, particle background, and all associated animations.
+// This version is configured for a JavaScript-based (AJAX) submission to Netlify
+// and includes SVG email obfuscation.
 ---
 
 <style>
-    /* All the styles from your contact.html, scoped to this component */
     :root {
       --pulledin-red: #D81E2C; 
     }
-
     #particle-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
     }
-
     .contact-section {
-        min-height: 100vh;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        padding: 6rem 2rem 4rem;
-        position: relative;
-        z-index: 1;
+        min-height: 100vh; width: 100%; display: flex; align-items: center;
+        padding: 6rem 2rem 4rem; position: relative; z-index: 1;
     }
-
     .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 2rem;
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        align-items: center;
+        display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem;
+        width: 100%; max-width: 1400px; margin: 0 auto; align-items: center;
     }
-
     .contact-text-content {
         grid-column: 1 / span 6;
     }
-
     .contact-headline {
-        font-family: var(--font-headline);
-        font-size: clamp(3.5rem, 10vw, 8rem);
-        line-height: 1.1;
-        margin-bottom: 2rem;
+        font-family: var(--font-headline); font-size: clamp(3.5rem, 10vw, 8rem);
+        line-height: 1.1; margin-bottom: 2rem;
     }
-
     .contact-details h3 {
-        font-family: var(--font-inconsolata);
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        opacity: 0.7;
-        margin-top: 2rem;
+        font-family: var(--font-headline); font-size: 1rem; margin-bottom: 0.5rem;
+        opacity: 0.7; margin-top: 2rem;
     }
-
     .contact-details a {
-        font-size: 1.2rem;
-        text-decoration: none;
-        color: var(--primary);
-        display: inline-block;
-        margin-right: 1.5rem;
+        font-size: 1.2rem; text-decoration: none; color: var(--primary);
+        display: inline-block; margin-right: 1.5rem;
     }
     .contact-details a:hover {
         text-decoration: underline;
     }
-
     .contact-form-container {
         grid-column: 7 / span 6;
     }
-
     .contact-form .form-group {
-        position: relative;
-        margin-bottom: 2rem;
+        position: relative; margin-bottom: 2rem;
     }
-
     .contact-form .form-input {
-        width: 100%;
-        padding: 1.2rem 0;
-        border: none;
-        border-bottom: 2px solid rgba(0,0,0,0.3);
-        background-color: transparent;
-        font-family: var(--font-body);
-        font-size: 1.1rem;
-        color: var(--primary);
+        width: 100%; padding: 1.2rem 0; border: none;
+        border-bottom: 2px solid rgba(0,0,0,0.3); background-color: transparent;
+        font-family: var(--font-body); font-size: 1.1rem; color: var(--primary);
         transition: border-color 0.3s ease;
     }
-
     .contact-form .form-input:focus {
-        outline: none;
-        border-color: var(--primary);
+        outline: none; border-color: var(--primary);
     }
-
     .contact-form .form-label {
-        position: absolute;
-        top: 1.2rem;
-        left: 0;
-        font-size: 1.1rem;
-        color: rgba(0,0,0,0.5);
-        pointer-events: none;
-        transition: all 0.3s ease;
+        position: absolute; top: 1.2rem; left: 0; font-size: 1.1rem;
+        color: rgba(0,0,0,0.5); pointer-events: none; transition: all 0.3s ease;
     }
-
     .contact-form .form-input:focus + .form-label,
     .contact-form .form-input:not(:placeholder-shown) + .form-label {
-        top: -0.8rem;
-        font-size: 0.8rem;
-        color: var(--primary);
+        top: -0.8rem; font-size: 0.8rem; color: var(--primary);
     }
-    
     .contact-form textarea.form-input {
-        min-height: 120px;
-        resize: vertical;
+        min-height: 120px; resize: vertical;
     }
-
     #send-button-wrapper {
-        position: relative;
-        width: 150px;
-        height: 150px;
-        margin-top: 2rem;
-        margin-left: auto; /* Align to the right */
+        position: relative; width: 150px; height: 150px;
+        margin-top: 2rem; margin-left: auto; /* Align to the right */
         overflow: visible; /* Allow particles to burst out */
     }
-
     #send-button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--pulledin-red);
-        color: var(--white);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: var(--font-headline);
-        font-size: 1.5rem;
-        cursor: grab;
-        user-select: none;
-        border: none;
+        position: absolute; top: 0; left: 0; width: 100%;
+        height: 100%; background: var(--pulledin-red);
+        color: var(--white); border-radius: 50%; display: flex;
+        justify-content: center; align-items: center; font-family: var(--font-headline);
+        font-size: 1.5rem; cursor: grab; user-select: none; border: none;
     }
     #send-button:active {
         cursor: grabbing;
     }
-    
     #form-status {
-        margin-top: 1.5rem;
-        font-size: 1.1rem;
-        font-family: var(--font-headline);
-        font-weight: 600;
-        text-align: center;
-        width: 100%;
+        margin-top: 1.5rem; font-size: 1.1rem; font-family: var(--font-headline);
+        font-weight: 600; text-align: center; width: 100%;
     }
-
     @media (max-width: 900px) {
         .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr; gap: 4rem;
         }
         .contact-text-content, .contact-form-container {
-            grid-column: 1 / -1;
-            text-align: center;
+            grid-column: 1 / -1; text-align: center;
         }
         #send-button-wrapper {
-            margin-right: auto;
-            margin-left: auto;
+            margin-right: auto; margin-left: auto;
         }
+    }
+    .email-svg-object {
+        height: 23px; /* Corresponds to 1.2rem font size */
+        vertical-align: middle; /* Aligns it nicely with text */
+        margin-top: -5px;
     }
 </style>
 
@@ -179,7 +108,9 @@
             <h1 class="contact-headline">Let's Talk.</h1>
             <div class="contact-details">
                 <h3>General Inquiries</h3>
-                <a href="mailto:anne-marie@pulledin.com">anne-marie@pulledin.com</a>
+                <a href="mailto:anne-marie@pulledin.com">
+                    <object class="email-svg-object" width="230" height="24" data="/email.svg" type="image/svg+xml"></object>
+                </a>
                 <h3>Socials</h3>
                 <p>
                     <a href="https://www.linkedin.com/company/pulledin/?viewAsMember=true" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -188,7 +119,7 @@
             </div>
         </div>
         <div class="contact-form-container">
-            <form id="contact-form" class="contact-form"  name="contact" action="https://script.google.com/macros/s/AKfycbwjc28JBo8cl0DkUBaTHu4woWySKeOXj8cCrY0qhP4Ve0byLSzEL3BRN5TItVQ39P0bAg/exec" method="POST" data-netlify="true">
+            <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="contact" />
                 <div class="form-group">
                     <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
@@ -204,21 +135,16 @@
                 </div>
             </form>
             <div id="send-button-wrapper">
-                <button type="submit" id="send-button">Send</button>
+                <button type="button" id="send-button">Send</button>
             </div>
             <div id="form-status"></div>
         </div>
     </div>
 </section>
 
-
 <script is:inline>
-    // This script will run only when the ContactForm component is on the page
+    // This script handles BOTH the animations AND the custom Netlify form submission
     document.addEventListener('DOMContentLoaded', function () {
-        if (typeof gsap === 'undefined') { return; }
-        gsap.registerPlugin(Draggable);
-
-        // --- Particle Animation Logic ---
         const particleCanvas = document.getElementById('particle-canvas');
         if (particleCanvas) {
             const ctx = particleCanvas.getContext('2d');
@@ -229,8 +155,7 @@
             const mouse = { x: null, y: null, radius: 150 };
 
             window.addEventListener('mousemove', function(event) {
-                mouse.x = event.x;
-                mouse.y = event.y;
+                mouse.x = event.x; mouse.y = event.y;
             });
 
             class Particle {
@@ -250,7 +175,7 @@
                 update() {
                     let dx = mouse.x - this.x; let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 0) distance = 0; // handle case where distance is 0
+                    if (distance < 0) distance = 0;
                     let forceDirectionX = distance === 0 ? 0 : dx / distance; 
                     let forceDirectionY = distance === 0 ? 0 : dy / distance;
                     let maxDistance = mouse.radius;
@@ -295,24 +220,25 @@
             });
         }
         
-
-        // --- Contact Form & Draggable Button Logic ---
         const form = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
         const sendButton = document.getElementById('send-button');
         const sendButtonWrapper = document.getElementById('send-button-wrapper');
 
         if (form && formStatus && sendButton && sendButtonWrapper) {
-            Draggable.create(sendButton, {
-                type: "x,y",
-                bounds: sendButtonWrapper,
-                onRelease: function() {
-                    gsap.to(this.target, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.5)" });
-                }
-            });
+            if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined') {
+                gsap.registerPlugin(Draggable);
+                Draggable.create(sendButton, {
+                    type: "x,y",
+                    bounds: sendButtonWrapper,
+                    onRelease: function() {
+                        gsap.to(this.target, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.5)" });
+                    }
+                });
+            }
 
             function createBurst() {
-                for (let i = 0; i < 25; i++) {
+                 for (let i = 0; i < 25; i++) {
                     const particle = document.createElement('div');
                     particle.style.position = 'absolute';
                     particle.style.left = '50%';
@@ -338,36 +264,44 @@
                 }
             }
 
-            async function handleSubmit() {
+            const handleSubmit = (event) => {
+                event.preventDefault();
+
                 if (!form.checkValidity()) {
                     form.reportValidity();
                     return;
                 }
-                
+
                 createBurst();
 
-                const data = new FormData(form);
+                const formData = new FormData(form);
                 formStatus.textContent = 'Sending...';
-                
-                try {
-                    await fetch(form.action, {
-                        method: 'POST',
-                        body: data,
-                        mode: 'no-cors' 
-                    });
 
+                fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString(),
+                })
+                .then(() => {
                     formStatus.textContent = "Thanks for your submission!";
                     form.reset();
-                    gsap.to([form, sendButtonWrapper], { opacity: 0, duration: 0.5, onComplete: () => {
-                        form.style.display = 'none';
-                        sendButtonWrapper.style.display = 'none';
-                    }});
-
-                } catch (error) {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to([form, sendButtonWrapper], { 
+                            opacity: 0, 
+                            duration: 0.5, 
+                            onComplete: () => {
+                                form.style.display = 'none';
+                                sendButtonWrapper.style.display = 'none';
+                            }
+                        });
+                    }
+                })
+                .catch((error) => {
                     console.error('Error submitting form:', error);
-                    formStatus.textContent = "Oops! A network problem occurred. Please check your connection.";
-                }
-            }
+                    formStatus.textContent = "Oops! A network problem occurred.";
+                });
+            };
+
             sendButton.addEventListener("click", handleSubmit);
         }
     });

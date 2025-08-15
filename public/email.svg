@@ -1,0 +1,12 @@
+<svg viewBox="0 0 230 24" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      dominant-baseline: middle;
+      fill: #1a1a1a; /* Matches your --primary color */
+      font-family: 'Inter', sans-serif;
+      font-size: 19px; /* Equivalent to 1.2rem */
+      text-anchor: start;
+    }
+  </style>
+  <text x="0" y="50%">anne-marie@pulledin.com</text>
+</svg>
