@@ -98,6 +98,7 @@
         vertical-align: middle; /* Aligns it nicely with text */
         margin-top: -5px;
     }
+    .hidden {display: none;}
 </style>
 
 <canvas id="particle-canvas"></canvas>
@@ -119,10 +120,15 @@
             </div>
         </div>
         <div class="contact-form-container">
-            <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true">
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="contact" />
+                <p class="hidden">
+                    <label>
+                    Don’t fill this out if you’re human: <input name="bot-field" />
+                    </label>
+                </p>
                 <div class="form-group">
-                    <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+                    <input type="text" id="name" name="name" class="form-input" netlify-honeypot="bot-field" data-netlify-recaptcha="true" placeholder=" " required>
                     <label for="name" class="form-label">Your Name</label>
                 </div>
                 <div class="form-group">
@@ -133,8 +139,10 @@
                     <textarea id="message" name="message" class="form-input" placeholder=" " required></textarea>
                     <label for="message" class="form-label">Your Message</label>
                 </div>
+                <div data-netlify-recaptcha="true"></div>
             </form>
             <div id="send-button-wrapper">
+
                 <button type="button" id="send-button">Send</button>
             </div>
             <div id="form-status"></div>
